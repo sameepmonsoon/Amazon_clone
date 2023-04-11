@@ -11,6 +11,7 @@
   padding: 0 1rem;
   z-index: 100;
   & .navbar-icon {
+    cursor: pointer;
     color: $yellow;
     object-fit: contain;
     margin: 0;

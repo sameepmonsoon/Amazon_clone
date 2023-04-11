@@ -60,58 +60,7 @@ const HeroSection = () => {
           ratings={4}
           price={100}
         />
-        <Card
-          image="../../../public/vite.svg"
-          title={"a"}
-          rating={<></>}
-          button={<button>Add to cart</button>}
-          ratings={4}
-          price={100}
-        />
-        <Card
-          image="../../../public/vite.svg"
-          title={"a"}
-          rating={<></>}
-          button={<button>Add to cart</button>}
-          ratings={4}
-          price={100}
-        />
-        <Card
-          image="../../../public/vite.svg"
-          title={"a"}
-          rating={<></>}
-          button={<button>Add to cart</button>}
-          ratings={4}
-          price={100}
-        />
-        <Card
-          image="../../../public/vite.svg"
-          title={"a"}
-          rating={<></>}
-          button={<button>Add to cart</button>}
-          ratings={4}
-          price={100}
-        />
-        <Card
-          image="../../../public/vite.svg"
-          title={"a"}
-          rating={<></>}
-          button={<button>Add to cart</button>}
-          ratings={4}
-          price={100}
-        />
-        <Card
-          image="../../../public/vite.svg"
-          title={"a"}
-          rating={<></>}
-          button={<button>Add to cart</button>}
-          ratings={4}
-          price={100}
-        />
       </div>
-      <br />
-      <br />
-      <br />
     </div>
   );
 };

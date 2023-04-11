@@ -9,8 +9,10 @@ const Card = (props: {
   title: string;
   ratings: number;
   price: number;
+  anotherSection?: boolean;
 }) => {
-  const { image, button, rating, title, ratings, price,id } = props;
+  const { image, button, rating, title, ratings, price, id, anotherSection } =
+    props;
   const item: Array<React.ReactNode> = [];
   for (let i: number = 0; i <= ratings; i++) {
     if (i < ratings) {
@@ -20,7 +22,7 @@ const Card = (props: {
     }
   }
   return (
-    <div className="card" key={id}>
+    <div className={`${anotherSection ? "horizontal-card " : "card"}`} key={id}>
       <p className="card-image">
         <img src={image} alt="" />
       </p>
