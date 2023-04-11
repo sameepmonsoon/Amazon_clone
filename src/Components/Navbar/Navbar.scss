@@ -20,26 +20,38 @@
 
 .navbar-search {
   height: 60%;
-  flex: 4;
+  width: auto;
+  min-width: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-flow: row nowrap;
+  outline: 0px solid $yellow;
   & .navbar-search-filter {
     display: flex;
     align-items: center;
     flex-flow: row nowrap;
     justify-content: center;
-    width: 45px;
+    min-width: 45px;
     height: 100%;
     background-color: whitesmoke;
     border-radius: 4px 0 0px 4px;
   }
   & input {
+    flex: 1;
     height: 100%;
-    width: 50%;
+    min-width: 80%;
     border: 0px;
     outline: none;
+    padding: 0 10px;
+    font-size: 14px;
+    font-weight: 500;
+    outline-offset: 2 px;
+  }
+  &:focus-within {
+    outline: 3px solid $yellow;
+    border-radius: 5px;
+    box-shadow: 0 0 0 2px $yellow;
   }
   & .search-icon {
     display: flex;

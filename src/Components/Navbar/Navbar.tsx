@@ -11,7 +11,7 @@ const Navbar = (props: {
       <span className="navbar-icon">{icon}</span>
       <span className="navbar-search">
         <span className="navbar-search-filter">All</span>
-        <input />
+        <input type="text" placeholder="Search Amazon" />
         <span className="search-icon">
           <TbSearch size={25} />
         </span>

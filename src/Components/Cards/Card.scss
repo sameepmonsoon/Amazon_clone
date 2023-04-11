@@ -1,0 +1,70 @@
+@import "../../scss/Variables.scss";
+.card {
+  width: 20rem;
+  max-width: 40rem;
+  min-width: 15rem;
+  display: flex;
+  flex-flow: column nowrap;
+  height: 30rem;
+  border: 1px solid gainsboro;
+  background-color: gainsboro;
+  border-radius: 4px;
+  row-gap: 10px;
+  overflow: hidden;
+}
+
+.card-image {
+  height: 60%;
+  display: flex;
+  border-radius: 4px;
+  background-color: transparent;
+  justify-content: center;
+  align-items: center;
+  & img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
+}
+
+.card-details {
+  background-color: white;
+  height: 100%;
+  padding: 10px 5px;
+  font-size: 17px;
+  font-weight: 500;
+  text-transform: capitalize;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: start;
+  align-items: start;
+
+  & .card-title {
+    height: 90%;
+    background-color: red;
+  }
+}
+
+.card-ratings {
+  display: flex;
+  width: 100%;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-around;
+  & span {
+    width: 100px;
+    max-height: 40px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  & .card-ratings-star {
+    color: $yellow;
+  }
+  & .card-button{
+    background-color: red;
+  }
+}
