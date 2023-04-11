@@ -3,7 +3,7 @@
   background-color: $navbar-color;
   height: 4rem;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   position: sticky;
   justify-content: space-between;
   align-items: center;

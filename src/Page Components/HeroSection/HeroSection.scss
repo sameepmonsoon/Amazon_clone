@@ -1,21 +1,32 @@
 @import "../../scss//Variables.scss";
 .hero-image {
   width: 100%;
-  margin-bottom: -150px;
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0,0));
+  margin-bottom: -40%;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
   z-index: -1;
 }
-.hero{
-    display: flex;
-    flex-flow: column wrap;
+.hero {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-flow: column wrap;
 }
 
-.products{
-    width: 100%;
-    background-color: red;
+.products {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  align-items: center;
+  gap: 10px;
+  flex-flow: row wrap;
+}
+
+.products-dual {
     display: flex;
-    justify-content: center;
     align-items: center;
-    column-gap:  10px;
-    flex-flow: row wrap;
+  justify-content: center;
+  flex-flow: row wrap;
+  padding: 10px;
+  align-items: center;
+  gap: 10px;
 }
