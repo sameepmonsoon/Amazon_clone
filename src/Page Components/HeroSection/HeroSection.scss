@@ -9,3 +9,13 @@
     display: flex;
     flex-flow: column wrap;
 }
+
+.products{
+    width: 100%;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap:  10px;
+    flex-flow: row wrap;
+}

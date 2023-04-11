@@ -12,16 +12,61 @@ const HeroSection = () => {
           alt=""
         />
       </div>
-      <div className="products">
+      <div className="">
         <Card
           image="../../../public/vite.svg"
-          title="image"
+          title={"a"}
           rating={<></>}
           button={<button>Add to cart</button>}
           ratings={4}
+          price={100}
         />
       </div>
-      <br /><br /><br />
+      <div className="products">
+        <Card
+          image="../../../public/vite.svg"
+          title={"a"}
+          rating={<></>}
+          button={<button>Add to cart</button>}
+          ratings={4}
+          price={100}
+        />
+        <Card
+          image="../../../public/vite.svg"
+          title={"a"}
+          rating={<></>}
+          button={<button>Add to cart</button>}
+          ratings={4}
+          price={100}
+        />
+        <Card
+          image="../../../public/vite.svg"
+          title={"a"}
+          rating={<></>}
+          button={<button>Add to cart</button>}
+          ratings={4}
+          price={100}
+        />
+        <Card
+          image="../../../public/vite.svg"
+          title={"a"}
+          rating={<></>}
+          button={<button>Add to cart</button>}
+          ratings={4}
+          price={100}
+        />
+        <Card
+          image="../../../public/vite.svg"
+          title={"a"}
+          rating={<></>}
+          button={<button>Add to cart</button>}
+          ratings={4}
+          price={100}
+        />
+      </div>
+      <br />
+      <br />
+      <br />
     </div>
   );
 };
