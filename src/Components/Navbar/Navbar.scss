@@ -1,0 +1,92 @@
+@import "../../scss//Variables.scss";
+.navbar {
+  background-color: $navbar-color;
+  height: 4rem;
+  display: flex;
+  flex-flow: row nowrap;
+  position: sticky;
+  justify-content: space-between;
+  align-items: center;
+  top: 0;
+  padding: 0 1rem;
+  z-index: 100;
+  & .navbar-icon {
+    color: $yellow;
+    object-fit: contain;
+    margin: 0;
+    padding: 2px;
+  }
+}
+
+.navbar-search {
+  height: 60%;
+  flex: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: row nowrap;
+  & .navbar-search-filter {
+    display: flex;
+    align-items: center;
+    flex-flow: row nowrap;
+    justify-content: center;
+    width: 45px;
+    height: 100%;
+    background-color: whitesmoke;
+    border-radius: 4px 0 0px 4px;
+  }
+  & input {
+    height: 100%;
+    width: 50%;
+    border: 0px;
+    outline: none;
+  }
+  & .search-icon {
+    display: flex;
+    align-items: center;
+    flex-flow: row nowrap;
+    justify-content: center;
+    height: 100%;
+    width: 45px;
+    background: $yellow;
+    border-radius: 0 4px 4px 0;
+  }
+}
+
+.navbar-options {
+  display: flex;
+  text-transform: capitalize;
+  width: 20%;
+  height: 3rem;
+  align-items: center;
+  justify-content: center;
+  column-gap: 10px;
+  color: white;
+  font-size: 14px;
+  font-weight: 400;
+  & span {
+    min-height: 30px;
+    min-width: 60px;
+    height: auto;
+    width: auto;
+    padding: 6px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 2px;
+    border: 1px solid $navbar-color;
+  }
+  & span:hover {
+    border: 1px solid white;
+  }
+  & .navbar-option-three {
+    display: flex;
+    font-size: 18px;
+    justify-content: center;
+    align-items: center;
+    column-gap: 5px;
+    font-weight: 500;
+  }
+}
