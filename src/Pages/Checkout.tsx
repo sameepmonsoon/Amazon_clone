@@ -3,8 +3,12 @@ import HomeLayout from "../Layout/HomeLayout";
 import Card from "../Components/Cards/ProductCard/Card";
 import "./Checkout.scss";
 import SubTotalCard from "../Components/Cards/SubTotalCard/SubTotalCard";
+import { useSelector } from "react-redux";
+import { getCartTotal } from "../store/cartSlice";
 const Checkout = (props: { checkoutAds?: React.ReactNode }) => {
   const { checkoutAds } = props;
+  const cartItems = useSelector((state: any) => state.cart);
+  console.log(cartItems);
   return (
     <HomeLayout
       children={
@@ -26,8 +30,8 @@ const Checkout = (props: { checkoutAds?: React.ReactNode }) => {
             </div>
             <div className="checkout-subtotal">
               <SubTotalCard
-                totalAmount={500}
-                totalItems={5}
+                totalAmount={getCartTotal(cartItems)}
+                totalItems={cartItems.length}
                 subtotalButton={<></>}
               />
             </div>

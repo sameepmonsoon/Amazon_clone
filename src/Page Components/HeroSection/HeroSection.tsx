@@ -1,13 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./HeroSection.scss";
 import Card from "../../Components/Cards/ProductCard/Card";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../store/cartSlice";
+import { fetchProducts } from "../../store/productSlice";
 const HeroSection = () => {
   const dispatch = useDispatch();
-  const addToBasket = (value: any) => {
-    dispatch(addToCart(value));
-  };
+  const { data, status } = useSelector((state: any) => state.product);
+  function addToBasket(value: any) {
+    const item = {
+      id: 1,
+      image: "image name",
+      name: "name",
+      price: 10,
+    } as { id: number; image: string; name: string; price: number } & void;
+    dispatch(addToCart(item));
+  }
+
+  useEffect(() => {
+    // @ts-ignore
+    dispatch(fetchProducts());
+  }, []);
   return (
     <div className="hero">
       <div className="hero-image-container">
@@ -23,15 +36,7 @@ const HeroSection = () => {
           image="../../../public/vite.svg"
           title={"a"}
           rating={<></>}
-          button={
-            <button
-              onClick={() => {
-                addToCart;
-                console.log("added");
-              }}>
-              Add to cart
-            </button>
-          }
+          button={<button onClick={() => addToBasket("a")}>Add to cart</button>}
           ratings={4}
           price={100}
         />

@@ -2,11 +2,12 @@ import React from "react";
 import "./SubTotalCard.scss";
 const SubTotalCard = (props: {
   totalItems: number;
-  totalAmount: number;
+  totalAmount: number | any;
   subtotalButton: React.ReactNode;
   giftCard?: boolean;
 }) => {
   const { totalItems, totalAmount, giftCard, subtotalButton } = props;
+  console.log(totalAmount);
   return (
     <div className="subtotal-card">
       <p>
@@ -24,7 +25,10 @@ const SubTotalCard = (props: {
           This card contains gift.
         </p>
       )}
-      <span className="subtotal-button">{subtotalButton}<button>Checkout</button></span>
+      <span className="subtotal-button">
+        {subtotalButton}
+        <button>Checkout</button>
+      </span>
     </div>
   );
 };

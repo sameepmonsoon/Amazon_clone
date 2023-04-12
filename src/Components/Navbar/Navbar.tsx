@@ -5,8 +5,9 @@ import { useNavigate } from "react-router-dom";
 const Navbar = (props: {
   icon: React.ReactNode;
   cartIcon: React.ReactNode;
+  cartItems: number;
 }) => {
-  const { icon, cartIcon } = props;
+  const { icon, cartIcon, cartItems } = props;
   const navigate = useNavigate();
   return (
     <div className="navbar">
@@ -30,7 +31,7 @@ const Navbar = (props: {
         <span
           className="navbar-option-three"
           onClick={() => navigate("/checkout")}>
-          {cartIcon} {0}
+          {cartIcon} {cartItems}
         </span>
       </div>
     </div>
