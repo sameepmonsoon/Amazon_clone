@@ -3,7 +3,7 @@
   padding: 10px;
   height: 100%;
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: column wrap;
   justify-content: start;
   align-items: start;
   gap: 10px;
@@ -22,13 +22,18 @@
   & .checkout-product-container{
     padding: 0 2px;
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     width: 100%;
     justify-content:space-evenly;
     align-items: center;
+    gap: 10px;
   }
   & .checkout-product{
+    order: 1;
     display: flex;
     flex-flow: column nowrap;
+  }
+  & .checkout-subtotal{
+    order: 2;
   }
 }

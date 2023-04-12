@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./SubTotalCard.scss";
 const SubTotalCard = (props: {
   totalItems: number;
   totalAmount: number;
@@ -24,7 +24,7 @@ const SubTotalCard = (props: {
           This card contains gift.
         </p>
       )}
-      <span className="subtotal-button"><button>a</button></span>
+      <span className="subtotal-button">{subtotalButton}<button>Checkout</button></span>
     </div>
   );
 };

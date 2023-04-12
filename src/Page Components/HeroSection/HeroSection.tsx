@@ -1,8 +1,13 @@
 import React from "react";
-
 import "./HeroSection.scss";
 import Card from "../../Components/Cards/ProductCard/Card";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../store/cartSlice";
 const HeroSection = () => {
+  const dispatch = useDispatch();
+  const addToBasket = (value: any) => {
+    dispatch(addToCart(value));
+  };
   return (
     <div className="hero">
       <div className="hero-image-container">
@@ -18,7 +23,15 @@ const HeroSection = () => {
           image="../../../public/vite.svg"
           title={"a"}
           rating={<></>}
-          button={<button>Add to cart</button>}
+          button={
+            <button
+              onClick={() => {
+                addToCart;
+                console.log("added");
+              }}>
+              Add to cart
+            </button>
+          }
           ratings={4}
           price={100}
         />
