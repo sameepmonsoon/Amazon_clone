@@ -5,16 +5,15 @@ const Card = (props: {
   id: number | string;
   image: string;
   button: React.ReactNode;
-  rating: React.ReactNode;
   title: string;
   ratings: number;
   price: number;
   anotherSection?: boolean;
 }) => {
-  const { image, button, rating, title, ratings, price, id, anotherSection } =
-    props;
+  const { image, button, title, ratings, price, id, anotherSection } = props;
   const item: Array<React.ReactNode> = [];
-  for (let i: number = 0; i <= ratings; i++) {
+
+  for (let i: number = 0; i <= Math.ceil(ratings); i++) {
     if (i < ratings) {
       item.push(<HiStar size={18} key={i} />);
     } else {

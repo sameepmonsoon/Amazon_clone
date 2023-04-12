@@ -22,7 +22,6 @@ const Checkout = (props: { checkoutAds?: React.ReactNode }) => {
                 id={121}
                 image="../../../public/vite.svg"
                 title={"a"}
-                rating={<></>}
                 button={<button>Add to cart</button>}
                 ratings={4}
                 price={100}
