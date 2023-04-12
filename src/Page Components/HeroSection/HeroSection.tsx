@@ -52,16 +52,18 @@ const HeroSection = () => {
       <div className="products">
         {products.map((item: any, index: number) => {
           return (
-            <Card
-              id={item.id}
-              image={item.image}
-              title={item.category}
-              button={
-                <button onClick={() => addToBasket(item)}>Add to cart</button>
-              }
-              ratings={item.rating.rate}
-              price={item.price}
-            />
+            <div key={index}>
+              <Card
+                id={item.id}
+                image={item.image}
+                title={item.category}
+                button={
+                  <button onClick={() => addToBasket(item)}>Add to cart</button>
+                }
+                ratings={item.rating.rate}
+                price={item.price}
+              />
+            </div>
           );
         })}
       </div>

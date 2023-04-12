@@ -13,8 +13,11 @@ const cartSlicer = createSlice({
 
       state.push(action.payload);
     },
+    removeFromCart(state: any, action: any) {
+      return state.filter((item: any) => item.id !== action.payload);
+    },
   },
 });
 
-export const { addToCart } = cartSlicer.actions;
+export const { addToCart, removeFromCart } = cartSlicer.actions;
 export default cartSlicer.reducer;

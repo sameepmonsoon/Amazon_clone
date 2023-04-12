@@ -1,6 +1,7 @@
 @import "../scss/Variables.scss";
 .checkout-container {
   padding: 10px;
+  overflow: hidden;
   height: 100%;
   display: flex;
   flex-flow: column wrap;
