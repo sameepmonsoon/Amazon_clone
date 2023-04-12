@@ -1,7 +1,7 @@
 import React from "react";
 
 import "./HeroSection.scss";
-import Card from "../../Components/Cards/Card";
+import Card from "../../Components/Cards/ProductCard/Card";
 const HeroSection = () => {
   return (
     <div className="hero">

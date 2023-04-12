@@ -27,7 +27,9 @@ const Navbar = (props: {
       <div className="navbar-options">
         <span className="navbar-option-one">Hello Guest,Sign In</span>
         <span className="navbar-option-two">Return Orders</span>
-        <span className="navbar-option-three">
+        <span
+          className="navbar-option-three"
+          onClick={() => navigate("/checkout")}>
           {cartIcon} {0}
         </span>
       </div>

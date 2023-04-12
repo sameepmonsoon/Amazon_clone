@@ -1,0 +1,17 @@
+@import "../../../scss/Variables.scss";
+.subtotal-card {
+  width: 20rem;
+  background-color: red;
+  border: 1px solid gainsboro;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.subtotal-button {
+  button {
+    background-color: $yellow;
+    height: 20px;
+    width: 90%;
+    border-radius: 5px;
+  }
+}
