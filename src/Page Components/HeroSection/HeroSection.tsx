@@ -4,20 +4,23 @@ import Card from "../../Components/Cards/ProductCard/Card";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../store/cartSlice";
 import { fetchProducts } from "../../store/productSlice";
+import Cookies from "js-cookie";
+
 const HeroSection = () => {
   const dispatch = useDispatch();
   const { data: products, status } = useSelector((state: any) => state.product);
+  console.log(products);
   function addToBasket(value: any) {
-    const item = {
-      id: 1,
-      image: "image name",
-      name: "name",
-      price: 10,
-    } as { id: number; image: string; name: string; price: number } & void;
+    // const item = {
+    //   id: 1,
+    //   image: "image name",
+    //   name: "name",
+    //   price: 10,
+    // } as { id: number; image: string; name: string; price: number } & void;
     dispatch(addToCart(value));
-    // localStorage.setItem("cartItems", JSON.stringify(value));
+    // @ts-ignore
+    const cartItems = JSON.parse(Cookies.get(CART_COOKIE) || "[]");
   }
-
   useEffect(() => {
     // @ts-ignore
     dispatch(fetchProducts());
@@ -37,7 +40,8 @@ const HeroSection = () => {
             <Card
               id={item.id}
               image={item.image}
-              title={item.category}
+              category={item.category}
+              description={item.description}
               button={
                 <button
                   onClick={() => {
@@ -60,7 +64,8 @@ const HeroSection = () => {
               <Card
                 id={item.id}
                 image={item.image}
-                title={item.category}
+                category={item.category}
+                description={item.description}
                 button={
                   <button
                     onClick={() => {

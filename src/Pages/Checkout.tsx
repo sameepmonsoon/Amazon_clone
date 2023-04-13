@@ -14,13 +14,14 @@ import {
 import { AiOutlineDelete } from "react-icons/ai";
 import { MdAdd } from "react-icons/md";
 import { HiMinusSm } from "react-icons/hi";
+import Cookies from "js-cookie";
 const Checkout = (props: { checkoutAds?: React.ReactNode }) => {
   const { checkoutAds } = props;
   const cartItems = useSelector((state: any) => state.cart);
   const dispatch = useDispatch();
   useEffect(() => {
     // Retrieve the cart items from localStorage and dispatch the setCart action to update the cart state
-    const cartItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
+    const cartItems = JSON.parse(Cookies.get("cartItems") || "[]");
     dispatch(addToCart(cartItems));
   }, []);
   function removeItem(item: any) {
@@ -47,7 +48,8 @@ const Checkout = (props: { checkoutAds?: React.ReactNode }) => {
                       anotherSection={true}
                       id={item.id}
                       image={item.image}
-                      title={item.category}
+                      category={item.category}
+                      description={item.description}
                       button={
                         <button
                           onClick={() => {

@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import Cookies from "js-cookie"
+import Cookies from "js-cookie";
 
-const CART_COOKIE= "cartItems"
+const CART_COOKIE = "cartItems";
 const initialState: Array<any> = [];
 
 export const getCartTotal = (cartItems: Array<any>) => {
@@ -18,15 +18,13 @@ const cartSlicer = createSlice({
       const existingItem = state.find(
         (item: any) => item.id === action.payload.id
       );
-      
+
       if (existingItem) {
-        // If the item already exists in the cart, update its quantity and total price
         if (existingItem.quantity < 10) {
           existingItem.quantity++;
           existingItem.totalPrice = existingItem.price * existingItem.quantity;
         }
       } else {
-        // If the item is not already in the cart, add it with quantity 1
         const newItem = {
           ...action.payload,
           quantity: 1,
@@ -34,20 +32,29 @@ const cartSlicer = createSlice({
         };
         state.push(newItem);
       }
+
+      Cookies.set(CART_COOKIE, JSON.stringify(state));
     },
     removeFromCart(state: any, action: any) {
-      return state.filter((item: any) => item.id !== action.payload);
+      const updatedState = state.filter(
+        (item: any) => item.id !== action.payload
+      );
+      Cookies.set(CART_COOKIE, JSON.stringify(updatedState));
+      return updatedState;
     },
     incrementCartItem(state: any, action: any) {
       const item = state.find((item: any) => item.id === action.payload);
       if (item) {
         item.quantity++;
+        item.totalPrice = item.price * item.quantity;
+        Cookies.set(CART_COOKIE, JSON.stringify(state));
       }
     },
-    decrementCartItem: (state: any, action: any) => {
+    decrementCartItem(state: any, action: any) {
       const item = state.find((item: any) => item.id === action.payload);
       if (item) {
         item.quantity--;
+        item.totalPrice = item.price * item.quantity;
         if (item.quantity === 0) {
           const index = state.items.findIndex(
             (item: any) => item.id === action.payload
@@ -56,6 +63,7 @@ const cartSlicer = createSlice({
             state.items.splice(index, 1);
           }
         }
+        Cookies.set(CART_COOKIE, JSON.stringify(state));
       }
     },
   },

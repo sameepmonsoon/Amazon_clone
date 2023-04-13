@@ -37,16 +37,27 @@
     width: 100%;
     overflow: hidden;
     display: flex;
+    gap: 2px;
     flex-flow: column nowrap;
     justify-content: start;
     align-items: start;
 
     & .card-title {
-      height: 90%;
+      min-height: 24px;
+      color: gray;
+      display: flex;
+      align-items: center;
       overflow: hidden;
       width: 96%;
       text-align: start;
       padding: 0 1px;
+    }
+    .card-description {
+      height: auto;
+      max-height: 50%;
+      width: 98%;
+      font-size: 14px;
+      overflow: hidden;
     }
   }
 
@@ -113,7 +124,7 @@
 
   & .card-details {
     background-color: white;
-
+    gap: 4px;
     height: 90%;
     padding: 10px 5px;
     font-size: 17px;
@@ -127,11 +138,21 @@
     align-items: start;
 
     & .card-title {
-      height: 90%;
+      min-height: 20px;
+      display: flex;
+      color: gray;
+
+      align-items: center;
       overflow: hidden;
       width: 96%;
       text-align: start;
       padding: 0 1px;
+    }
+    .card-description {
+      font-size: 14px;
+      height: 90%;
+      width: 98%;
+      overflow: hidden;
     }
   }
 

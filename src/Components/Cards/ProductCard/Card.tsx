@@ -5,7 +5,8 @@ const Card = (props: {
   id: number | string;
   image: string;
   button: React.ReactNode;
-  title: string;
+  category: string;
+  description?: string;
   ratings: number;
   price: number;
   anotherSection?: boolean;
@@ -16,7 +17,8 @@ const Card = (props: {
   const {
     image,
     button,
-    title,
+    category,
+    description,
     ratings,
     price,
     id,
@@ -40,7 +42,8 @@ const Card = (props: {
         <img src={image} alt="" />
       </p>
       <div className="card-details">
-        <div className="card-title">{title}</div>
+        <div className="card-title">{category}</div>
+        <div className="card-description">{description}</div>
         <p>RS.{price}</p>
         <div className="card-ratings">
           <span className="card-ratings-star">
