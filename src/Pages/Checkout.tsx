@@ -20,10 +20,13 @@ const Checkout = (props: { checkoutAds?: React.ReactNode }) => {
   const cartItems = useSelector((state: any) => state.cart);
   const dispatch = useDispatch();
   useEffect(() => {
-    // Retrieve the cart items from localStorage and dispatch the setCart action to update the cart state
     const cartItems = JSON.parse(Cookies.get("cartItems") || "[]");
-    dispatch(addToCart(cartItems));
+    console.log("cartItems from cookie: ", cartItems[0].totalPrice);
+    if (cartItems[0].totalPrice === null) {
+      dispatch(addToCart(cartItems));
+    } else dispatch(addToCart(cartItems));
   }, []);
+
   function removeItem(item: any) {
     dispatch(removeFromCart(item));
   }
