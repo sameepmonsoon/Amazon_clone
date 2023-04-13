@@ -2,8 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
 
 const CART_COOKIE = "cartItems";
-const initialState: Array<any> = [];
-
+const initialState: Array<any> = JSON.parse(Cookies.get(CART_COOKIE) || "[]");
 export const getCartTotal = (cartItems: Array<any>) => {
   return cartItems?.reduce((amount: any, item: any) => {
     const itemTotal = item.price * item.quantity;

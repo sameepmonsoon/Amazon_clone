@@ -8,11 +8,9 @@
   height: 30rem;
   border: 1px solid gainsboro;
   background-color: white;
-  // border-radius: 4px;
   row-gap: 10px;
   overflow: hidden;
   @media screen and (max-width: $mobile) {
-    background-color: red;
     width: auto;
     max-width: 20rem;
     min-width: 18rem;
