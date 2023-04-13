@@ -1,8 +1,7 @@
 @import "../../../scss/Variables.scss";
 .card {
-  width: auto;
   max-width: 40rem;
-  min-width: 22rem;
+  width: 22rem;
   display: flex;
   flex: 1;
   flex-flow: column nowrap;
@@ -12,7 +11,21 @@
   // border-radius: 4px;
   row-gap: 10px;
   overflow: hidden;
-
+  @media screen and (max-width: $mobile) {
+    background-color: red;
+    width: auto;
+    max-width: 20rem;
+    min-width: 18rem;
+    display: flex;
+    flex: 1;
+    flex-flow: column nowrap;
+    height: 30rem;
+    border: 1px solid gainsboro;
+    background-color: white;
+    // border-radius: 4px;
+    row-gap: 10px;
+    overflow: hidden;
+  }
   & .card-image {
     height: 60%;
     display: flex;

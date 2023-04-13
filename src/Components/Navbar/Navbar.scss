@@ -1,6 +1,7 @@
 @import "../../scss//Variables.scss";
 .navbar {
   background-color: $navbar-color;
+  width: auto;
   height: 4rem;
   display: flex;
   flex-flow: row wrap;
@@ -16,6 +17,122 @@
     object-fit: contain;
     margin: 0;
     padding: 2px;
+  }
+  @media screen and (max-width: $mobile) {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 10px;
+    flex-flow: row nowrap;
+    position: sticky;
+    align-items: center;
+    top: 0;
+    left: 0;
+    // padding: 0 1px;
+    z-index: 100;
+    .navbar-icon {
+    }
+    .navbar-options {
+      display: none;
+    }
+    .navbar-search {
+      height: 60%;
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-flow: row nowrap;
+      // outline: 0px solid $yellow;
+      & .navbar-search-filter {
+        display: flex;
+        align-items: center;
+        flex-flow: row nowrap;
+        justify-content: center;
+        min-width: 45px;
+        height: 100%;
+        background-color: whitesmoke;
+        // border-radius: 4px 0 0px 4px;
+      }
+      input {
+        flex: 1;
+        height: 100%;
+        width: 50%;
+        border: 0px;
+        outline: none;
+        padding: 0 10px;
+        font-size: 14px;
+        font-weight: 500;
+        outline-offset: 2 px;
+      }
+      &:focus-within {
+        outline: 3px solid $yellow;
+        border-radius: 5px;
+        box-shadow: 0 0 0 2px $yellow;
+      }
+    }
+  }
+  @media screen and (min-width: $small) and (max-width: $medium) {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 10px;
+    flex-flow: row wrap;
+    position: sticky;
+    align-items: center;
+    top: 0;
+    left: 0;
+    padding: 0 1rem;
+    z-index: 100;
+    .navbar-options {
+      display: flex;
+      text-transform: capitalize;
+      width: 20%;
+      height: 3rem;
+      align-items: center;
+      justify-content: space-evenly;
+      gap: 2px;
+      color: white;
+      font-size: 14px;
+      font-weight: 400;
+      flex: 1;
+      & span {
+        min-height: 30px;
+        min-width: 60px;
+        height: auto;
+        width: auto;
+        padding: 6px;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        border-radius: 2px;
+        border: 1px solid $navbar-color;
+      }
+      & span:hover {
+        border: 1px solid white;
+      }
+      & .navbar-option-three {
+        display: flex;
+        font-size: 18px;
+        justify-content: center;
+        align-items: center;
+        column-gap: 5px;
+        font-weight: 500;
+      }
+    }
+
+    .navbar-search {
+      height: 60%;
+      width: auto;
+      min-width: 50%;
+      display: flex;
+      flex: 1;
+      align-items: center;
+      justify-content: center;
+      flex-flow: row nowrap;
+      outline: 0px solid $yellow;
+    }
   }
 }
 

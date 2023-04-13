@@ -2,6 +2,7 @@
 .checkout-container {
   padding: 10px;
   overflow: hidden;
+  width: auto;
   height: 100%;
   display: flex;
   flex-flow: column wrap;
@@ -14,28 +15,29 @@
     width: 100%;
   }
   & h2 {
-    width: 100%;
+    width: 99%;
     text-align: center;
     text-transform: capitalize;
     padding: 10px;
-    border-bottom: 1px solid gray;
+    background-color: #ffffff;
+    border-bottom: 1px solid gainsboro;
   }
-  & .checkout-product-container{
+  & .checkout-product-container {
     padding: 0 2px;
     display: flex;
     flex-flow: row wrap;
     width: 100%;
-    justify-content:space-evenly;
+    justify-content: space-evenly;
     align-items: center;
     gap: 10px;
   }
-  & .checkout-product{
+  & .checkout-product {
     order: 1;
     display: flex;
     flex-flow: column nowrap;
     gap: 20px;
   }
-  & .checkout-subtotal{
+  & .checkout-subtotal {
     order: 2;
   }
 }
