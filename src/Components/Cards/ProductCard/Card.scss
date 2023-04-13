@@ -120,6 +120,26 @@
   overflow: hidden;
   border: 1px solid gainsboro;
   // flex: 2;
+  @media screen and (max-width: $mobile) {
+    min-width: 10rem;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    flex-flow: column nowrap;
+    height: 30rem;
+    overflow: hidden;
+    border: 1px solid gainsboro;
+  }
+  @media screen and (max-width: $medium) and (min-width: $mobile) {
+    min-width: 20rem;
+    display: flex;
+    justify-content: flex-start;
+    align-self: center;
+    flex-flow: row nowrap;
+    height: 11rem;
+    overflow: hidden;
+    border: 1px solid gainsboro;
+  }
   & .card-image {
     height: 100%;
     display: flex;
@@ -132,6 +152,23 @@
       height: 100%;
       width: 100%;
       object-fit: contain;
+    }
+
+    @media screen and (max-width: $mobile) {
+      height: 50%;
+      display: flex;
+      width: 30%;
+      border-radius: 4px;
+      background-color: transparent;
+      justify-content: center;
+      align-items: center;
+      align-self: center;
+
+      & img {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+      }
     }
   }
 
@@ -166,6 +203,9 @@
       height: 90%;
       width: 98%;
       overflow: hidden;
+    }
+    @media screen and (max-width: $mobile) {
+      font-size: 14px;
     }
   }
 

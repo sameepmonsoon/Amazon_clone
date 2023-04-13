@@ -18,7 +18,7 @@
     margin: 0;
     padding: 2px;
   }
-  @media screen and (max-width: $mobile) {
+  @media screen and (max-width: $small) {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -195,11 +195,11 @@
   font-size: 14px;
   font-weight: 400;
   & span {
-    min-height: 30px;
+    min-height: 40px;
     min-width: 60px;
     height: auto;
     width: auto;
-    padding: 6px;
+    padding: 3px;
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
