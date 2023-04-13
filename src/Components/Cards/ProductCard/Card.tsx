@@ -1,6 +1,8 @@
 import React from "react";
 import "./Card.scss";
 import { HiStar, HiOutlineStar } from "react-icons/hi2";
+import { CiShoppingTag } from "react-icons/ci";
+import { TfiTag } from "react-icons/tfi";
 const Card = (props: {
   id: number | string;
   image: string;
@@ -42,7 +44,10 @@ const Card = (props: {
         <img src={image} alt="" />
       </p>
       <div className="card-details">
-        <div className="card-title">{category}</div>
+        <div className="card-title">
+          <TfiTag size={22} />
+          {category}
+        </div>
         <div className="card-description">{description}</div>
         <p>RS.{price}</p>
         <div className="card-ratings">
