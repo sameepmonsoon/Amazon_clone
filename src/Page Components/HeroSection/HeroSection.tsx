@@ -11,16 +11,10 @@ const HeroSection = () => {
   const { data: products, status } = useSelector((state: any) => state.product);
   console.log(products);
   function addToBasket(value: any) {
-    // const item = {
-    //   id: 1,
-    //   image: "image name",
-    //   name: "name",
-    //   price: 10,
-    // } as { id: number; image: string; name: string; price: number } & void;
     dispatch(addToCart(value));
-    // @ts-ignore
-    const cartItems = JSON.parse(Cookies.get(CART_COOKIE) || "[]");
+    Cookies.set("cartItems", JSON.stringify(value));
   }
+
   useEffect(() => {
     // @ts-ignore
     dispatch(fetchProducts());

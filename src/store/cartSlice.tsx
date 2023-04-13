@@ -2,7 +2,15 @@ import { createSlice } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
 
 const CART_COOKIE = "cartItems";
-const initialState: Array<any> = JSON.parse(Cookies.get(CART_COOKIE) || "[]");
+interface CartState {
+  id: number;
+  name: string;
+  price: number;
+  quantity: number;
+  totalPrice: number;
+}
+
+const initialState: CartState[] = [];
 export const getCartTotal = (cartItems: Array<any>) => {
   return cartItems?.reduce((amount: any, item: any) => {
     const itemTotal = item.price * item.quantity;
@@ -31,8 +39,6 @@ const cartSlicer = createSlice({
         };
         state.push(newItem);
       }
-
-      Cookies.set(CART_COOKIE, JSON.stringify(state));
     },
     removeFromCart(state: any, action: any) {
       const updatedState = state.filter(

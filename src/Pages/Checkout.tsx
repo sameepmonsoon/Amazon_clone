@@ -17,14 +17,15 @@ import { HiMinusSm } from "react-icons/hi";
 import Cookies from "js-cookie";
 const Checkout = (props: { checkoutAds?: React.ReactNode }) => {
   const { checkoutAds } = props;
-  const cartItems = useSelector((state: any) => state.cart);
   const dispatch = useDispatch();
+
+  const cartItems = useSelector((state: any) => state.cart);
+  console.log("outside useeff", cartItems);
+
   useEffect(() => {
     const cartItems = JSON.parse(Cookies.get("cartItems") || "[]");
-    console.log("cartItems from cookie: ", cartItems[0].totalPrice);
-    if (cartItems[0].totalPrice === null) {
-      dispatch(addToCart(cartItems));
-    } else dispatch(addToCart(cartItems));
+    //@ts-ignore
+    dispatch(addToCart(cartItems));
   }, []);
 
   function removeItem(item: any) {
@@ -49,7 +50,7 @@ const Checkout = (props: { checkoutAds?: React.ReactNode }) => {
                   <div key={index}>
                     <Card
                       anotherSection={true}
-                      id={item.id}
+                      id={item?.id}
                       image={item.image}
                       category={item.category}
                       description={item.description}
