@@ -33,6 +33,7 @@
     order: 1;
     display: flex;
     flex-flow: column nowrap;
+    gap: 20px;
   }
   & .checkout-subtotal{
     order: 2;

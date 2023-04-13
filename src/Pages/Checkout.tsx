@@ -5,6 +5,7 @@ import "./Checkout.scss";
 import SubTotalCard from "../Components/Cards/SubTotalCard/SubTotalCard";
 import { useDispatch, useSelector } from "react-redux";
 import { getCartTotal, removeFromCart } from "../store/cartSlice";
+import { AiOutlineDelete } from "react-icons/ai";
 const Checkout = (props: { checkoutAds?: React.ReactNode }) => {
   const { checkoutAds } = props;
   const cartItems = useSelector((state: any) => state.cart);
@@ -23,22 +24,25 @@ const Checkout = (props: { checkoutAds?: React.ReactNode }) => {
             <div className="checkout-product">
               {products.map((item: any, index: number) => {
                 return (
-                  <Card
-                    anotherSection={true}
-                    id={item.id}
-                    image={item.image}
-                    title={item.category}
-                    button={
-                      <button
-                        onClick={() => {
-                          removeItem(item);
-                        }}>
-                        Remove from cart
-                      </button>
-                    }
-                    ratings={item.rating.rate}
-                    price={item.price}
-                  />
+                  <div key={index}>
+                    <Card
+                      anotherSection={true}
+                      id={item.id}
+                      image={item.image}
+                      title={item.category}
+                      button={
+                        <button
+                          onClick={() => {
+                            removeItem(item.id);
+                          }}>
+                          <AiOutlineDelete size={25} />
+                        </button>
+                      }
+                      ratings={item.rating.rate}
+                      quantity={1}
+                        price={item.price}
+                    />
+                  </div>
                 );
               })}
             </div>

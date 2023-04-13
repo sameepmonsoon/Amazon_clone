@@ -9,8 +9,10 @@ const Card = (props: {
   ratings: number;
   price: number;
   anotherSection?: boolean;
+  quantity?: number;
 }) => {
-  const { image, button, title, ratings, price, id, anotherSection } = props;
+  const { image, button, title, ratings, price, id, anotherSection, quantity } =
+    props;
   const item: Array<React.ReactNode> = [];
 
   for (let i: number = 0; i <= Math.ceil(ratings); i++) {
@@ -33,7 +35,10 @@ const Card = (props: {
             {ratings}
             {item}
           </span>
-          <span className="card-button">{button}</span>
+          <span className="card-button">
+            {button}
+            {quantity && <span className="quantity">{quantity}</span>}
+          </span>
         </p>
       </div>
     </div>
