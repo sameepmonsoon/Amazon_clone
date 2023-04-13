@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import HomeLayout from "../Layout/HomeLayout";
 import Card from "../Components/Cards/ProductCard/Card";
 import "./Checkout.scss";
@@ -9,6 +9,7 @@ import {
   removeFromCart,
   incrementCartItem,
   decrementCartItem,
+  addToCart,
 } from "../store/cartSlice";
 import { AiOutlineDelete } from "react-icons/ai";
 import { MdAdd } from "react-icons/md";
@@ -17,7 +18,11 @@ const Checkout = (props: { checkoutAds?: React.ReactNode }) => {
   const { checkoutAds } = props;
   const cartItems = useSelector((state: any) => state.cart);
   const dispatch = useDispatch();
-  useEffect(()=>{},[])
+  useEffect(() => {
+    // Retrieve the cart items from localStorage and dispatch the setCart action to update the cart state
+    const cartItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
+    dispatch(addToCart(cartItems));
+  }, []);
   function removeItem(item: any) {
     dispatch(removeFromCart(item));
   }
@@ -51,7 +56,7 @@ const Checkout = (props: { checkoutAds?: React.ReactNode }) => {
                           <AiOutlineDelete size={25} />
                         </button>
                       }
-                      ratings={item.rating.rate}
+                      ratings={item.rating?.rate}
                       quantity={item.quantity}
                       price={item.price}
                       incrementButton={

@@ -8,6 +8,8 @@ interface HomeLayoutTypes {
 const HomeLayout = (props: HomeLayoutTypes) => {
   const { children } = props;
   const cartItems = useSelector((state: any) => state.cart);
+  // const cartItemLocal = JSON.parse(localStorage.getItem("cartItems") || "[]");
+
   return (
     <div>
       <Navbar

@@ -15,6 +15,7 @@ const HeroSection = () => {
       price: 10,
     } as { id: number; image: string; name: string; price: number } & void;
     dispatch(addToCart(value));
+    // localStorage.setItem("cartItems", JSON.stringify(value));
   }
 
   useEffect(() => {

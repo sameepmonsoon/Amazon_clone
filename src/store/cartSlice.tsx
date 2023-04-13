@@ -1,4 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import Cookies from "js-cookie"
+
+const CART_COOKIE= "cartItems"
 const initialState: Array<any> = [];
 
 export const getCartTotal = (cartItems: Array<any>) => {
@@ -15,6 +18,7 @@ const cartSlicer = createSlice({
       const existingItem = state.find(
         (item: any) => item.id === action.payload.id
       );
+      
       if (existingItem) {
         // If the item already exists in the cart, update its quantity and total price
         if (existingItem.quantity < 10) {

@@ -9,6 +9,7 @@ const Navbar = (props: {
 }) => {
   const { icon, cartIcon, cartItems } = props;
   const navigate = useNavigate();
+
   return (
     <div className="navbar">
       <span
