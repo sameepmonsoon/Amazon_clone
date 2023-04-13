@@ -1,18 +1,31 @@
-import React from "react";
+import React,{useEffect} from "react";
 import HomeLayout from "../Layout/HomeLayout";
 import Card from "../Components/Cards/ProductCard/Card";
 import "./Checkout.scss";
 import SubTotalCard from "../Components/Cards/SubTotalCard/SubTotalCard";
 import { useDispatch, useSelector } from "react-redux";
-import { getCartTotal, removeFromCart } from "../store/cartSlice";
+import {
+  getCartTotal,
+  removeFromCart,
+  incrementCartItem,
+  decrementCartItem,
+} from "../store/cartSlice";
 import { AiOutlineDelete } from "react-icons/ai";
+import { MdAdd } from "react-icons/md";
+import { HiMinusSm } from "react-icons/hi";
 const Checkout = (props: { checkoutAds?: React.ReactNode }) => {
   const { checkoutAds } = props;
   const cartItems = useSelector((state: any) => state.cart);
   const dispatch = useDispatch();
-  const { data: products, status } = useSelector((state: any) => state.product);
+  useEffect(()=>{},[])
   function removeItem(item: any) {
     dispatch(removeFromCart(item));
+  }
+  function incrementCart(item: any) {
+    dispatch(incrementCartItem(item));
+  }
+  function decrementCart(item: any) {
+    dispatch(decrementCartItem(item));
   }
   return (
     <HomeLayout
@@ -22,7 +35,7 @@ const Checkout = (props: { checkoutAds?: React.ReactNode }) => {
           <h2 className="checkout-header">Your Shopping cart</h2>
           <div className="checkout-product-container">
             <div className="checkout-product">
-              {products.map((item: any, index: number) => {
+              {cartItems.map((item: any, index: number) => {
                 return (
                   <div key={index}>
                     <Card
@@ -39,8 +52,24 @@ const Checkout = (props: { checkoutAds?: React.ReactNode }) => {
                         </button>
                       }
                       ratings={item.rating.rate}
-                      quantity={1}
-                        price={item.price}
+                      quantity={item.quantity}
+                      price={item.price}
+                      incrementButton={
+                        <MdAdd
+                          size={25}
+                          onClick={() => {
+                            incrementCart(item.id);
+                          }}
+                        />
+                      }
+                      decrementButton={
+                        <HiMinusSm
+                          size={25}
+                          onClick={() => {
+                            decrementCart(item.id);
+                          }}
+                        />
+                      }
                     />
                   </div>
                 );

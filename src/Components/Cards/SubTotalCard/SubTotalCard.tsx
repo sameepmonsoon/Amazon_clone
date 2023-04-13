@@ -11,7 +11,7 @@ const SubTotalCard = (props: {
   return (
     <div className="subtotal-card">
       <p>
-        Subtotal ({totalItems} items) : Rs <span>{totalAmount}</span>
+        Subtotal ({totalItems} items) : Rs <span>{totalAmount.toFixed(2)}</span>
       </p>
       {giftCard && (
         <p

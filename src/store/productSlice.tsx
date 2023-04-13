@@ -29,8 +29,11 @@ export function fetchProducts() {
     const productData = await axios
       .get("https://fakestoreapi.com/products")
       .then((res) => {
-        console.log(res.data);
-        dispatch(setProducts(res.data));
+        const productsWithQuantity = res.data.map((product: any) => ({
+          ...product,
+          quantity: 0,
+        }));
+        dispatch(setProducts(productsWithQuantity));
         dispatch(setStatus(STATUS.IDLE));
       })
       .catch((err) => {

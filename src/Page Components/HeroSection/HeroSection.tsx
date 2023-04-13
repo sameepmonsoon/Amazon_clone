@@ -7,7 +7,6 @@ import { fetchProducts } from "../../store/productSlice";
 const HeroSection = () => {
   const dispatch = useDispatch();
   const { data: products, status } = useSelector((state: any) => state.product);
-  console.log("inside hero", products);
   function addToBasket(value: any) {
     const item = {
       id: 1,
@@ -32,22 +31,26 @@ const HeroSection = () => {
         />
       </div>
       <div className="products-dual">
-        <Card
-          id={121}
-          image="../../../public/vite.svg"
-          title={"a"}
-          button={<button onClick={() => addToBasket("a")}>Add to cart</button>}
-          ratings={4}
-          price={100}
-        />
-        <Card
-          id={1323213}
-          image="../../../public/vite.svg"
-          title={"a"}
-          button={<button>Add to cart</button>}
-          ratings={4}
-          price={100}
-        />
+        {products.slice(10, 12).map((item: any, index: number) => {
+          return (
+            <Card
+              id={item.id}
+              image={item.image}
+              title={item.category}
+              button={
+                <button
+                  onClick={() => {
+                    addToBasket({ ...item, quantity: 1 });
+                  }}>
+                  Add to cart
+                </button>
+              }
+              ratings={item.rating.rate}
+              price={item.price}
+              key={index}
+            />
+          );
+        })}
       </div>
       <div className="products">
         {products.map((item: any, index: number) => {
@@ -58,7 +61,12 @@ const HeroSection = () => {
                 image={item.image}
                 title={item.category}
                 button={
-                  <button onClick={() => addToBasket(item)}>Add to cart</button>
+                  <button
+                    onClick={() => {
+                      addToBasket({ ...item, quantity: 1 });
+                    }}>
+                    Add to cart
+                  </button>
                 }
                 ratings={item.rating.rate}
                 price={item.price}
