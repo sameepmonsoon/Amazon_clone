@@ -86,7 +86,6 @@ export const TextField = forwardRef(
         </div>
 
         <div>
-          {prefix && <div theme={theme}></div>}
           <input
             ref={ref}
             id={`input-${name}`}

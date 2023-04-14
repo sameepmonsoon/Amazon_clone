@@ -7,7 +7,6 @@ const SubTotalCard = (props: {
   giftCard?: boolean;
 }) => {
   const { totalItems, totalAmount, giftCard, subtotalButton } = props;
-  console.log(totalAmount);
 
   return (
     <div className="subtotal-card">

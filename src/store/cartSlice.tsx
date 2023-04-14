@@ -10,9 +10,7 @@ interface CartState {
   totalPrice: number;
 }
 
-const initialState: CartState[] = JSON.parse(
-  localStorage.getItem("cartItems") || "[]"
-);
+const initialState: CartState[] = JSON.parse(Cookies.get("cartItems") || "[]");
 export const getCartTotal = (cartItems: Array<any>) => {
   return cartItems?.reduce((amount: any, item: any) => {
     const itemTotal = item.price * item.quantity;
@@ -34,21 +32,24 @@ const cartSlicer = createSlice({
           existingItem.totalPrice = existingItem.price * existingItem.quantity;
         }
       } else {
-        const newItem = {
-          ...action.payload,
-          quantity: 1,
-          totalPrice: action.payload.price,
-        };
-        state.push(newItem);
+        if (state.length < 10) {
+          const newItem = {
+            ...action.payload,
+            quantity: 1,
+            totalPrice: action.payload.price,
+          };
+          state.push(newItem);
+        } else {
+          console.log("Cannot add more than 5 items to cart.");
+        }
       }
-      console.log(action.payload);
-      localStorage.setItem("cartItems", JSON.stringify(state));
+      Cookies.set("cartItems", JSON.stringify(state), { expires: 1 });
     },
     removeFromCart(state: any, action: any) {
       const updatedState = state.filter(
         (item: any) => item.id !== action.payload
       );
-      localStorage.setItem("cartItems", JSON.stringify(updatedState));
+      Cookies.set("cartItems", JSON.stringify(updatedState), { expires: 1 });
 
       // Cooki es.set(CART_COOKIE, JSON.stringify(updatedState));
       return updatedState;
@@ -59,11 +60,11 @@ const cartSlicer = createSlice({
         if (item.quantity >= 10) {
           item.quantity = 10;
           item.totalPrice = item.price * item.quantity;
-          localStorage.setItem("cartItems", JSON.stringify(state));
+          Cookies.set("cartItems", JSON.stringify(state), { expires: 1 });
         } else {
           item.quantity++;
           item.totalPrice = item.price * item.quantity;
-          localStorage.setItem("cartItems", JSON.stringify(state));
+          Cookies.set("cartItems", JSON.stringify(state), { expires: 1 });
         }
       }
     },
@@ -80,7 +81,7 @@ const cartSlicer = createSlice({
             state.items.splice(index, 1);
           }
         }
-        localStorage.setItem("cartItems", JSON.stringify(state));
+        Cookies.set("cartItems", JSON.stringify(state), { expires: 1 });
       }
     },
   },

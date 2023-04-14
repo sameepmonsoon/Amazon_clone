@@ -9,18 +9,16 @@ import Cookies from "js-cookie";
 const HeroSection = () => {
   const dispatch = useDispatch();
   const { data: products, status } = useSelector((state: any) => state.product);
-  console.log("cart items", products);
   function addToBasket(value: any) {
     dispatch(addToCart(value));
-    console.log("added value", value);
   }
 
   const [cartItems, setCartItems] = useState<any>(
-    JSON.parse(localStorage.getItem("cartItems") || "")
+    JSON.parse(Cookies.get("cartItems") || "[]")
   );
 
   useEffect(() => {
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    Cookies.set("cartItems", JSON.stringify(cartItems), { expires: 7 });
   }, [cartItems]);
   useEffect(() => {
     // @ts-ignore
