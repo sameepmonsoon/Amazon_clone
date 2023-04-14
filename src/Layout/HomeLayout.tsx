@@ -2,6 +2,7 @@ import React, { Children } from "react";
 import Navbar from "../Components/Navbar/Navbar";
 import { AiFillAmazonSquare, BsCart2 } from "react-icons/all";
 import { useSelector } from "react-redux";
+import Footer from "../Page Components/Footer/Footer";
 interface HomeLayoutTypes {
   children: React.ReactNode;
 }
@@ -18,6 +19,7 @@ const HomeLayout = (props: HomeLayoutTypes) => {
         cartItems={cartItems.length}
       />
       <div>{children}</div>
+      <Footer />
     </div>
   );
 };

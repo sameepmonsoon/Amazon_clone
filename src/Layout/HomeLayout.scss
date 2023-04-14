@@ -1,4 +1,6 @@
 * {
   overflow: hidden;
   width: auto;
+  display: flex;
+  flex-flow: column nowrap;
 }
