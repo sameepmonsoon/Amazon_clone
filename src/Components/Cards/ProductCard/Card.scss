@@ -6,7 +6,7 @@
   flex: 1;
   flex-flow: column nowrap;
   height: 30rem;
-  border: 1px solid gainsboro;
+  border: 1px solid $border-color;
   background-color: white;
   row-gap: 10px;
   overflow: hidden;
@@ -18,7 +18,7 @@
     flex: 1;
     flex-flow: column nowrap;
     height: 30rem;
-    border: 1px solid gainsboro;
+    border: 1px solid $border-color;
     background-color: white;
     // border-radius: 4px;
     row-gap: 10px;
@@ -116,7 +116,7 @@
   flex-flow: row nowrap;
   height: 11rem;
   overflow: hidden;
-  border: 1px solid gainsboro;
+  border: 1px solid $border-color;
   // flex: 2;
   @media screen and (max-width: $mobile) {
     min-width: 10rem;
@@ -126,7 +126,7 @@
     flex-flow: column nowrap;
     height: 30rem;
     overflow: hidden;
-    border: 1px solid gainsboro;
+    border: 1px solid $border-color;
   }
   @media screen and (max-width: $medium) and (min-width: $mobile) {
     min-width: 20rem;
@@ -136,7 +136,7 @@
     flex-flow: row nowrap;
     height: 11rem;
     overflow: hidden;
-    border: 1px solid gainsboro;
+    border: 1px solid $border-color;
   }
   & .card-image {
     height: 100%;
@@ -246,11 +246,11 @@
         width: auto;
         background-color: #ffffff;
         border-radius: 4px;
-        border: 1px solid gainsboro;
+        border: 1px solid $border-color;
       }
       button:hover {
         background-color: #ededed;
-        border: 1px solid gainsboro;
+        border: 1px solid $border-color;
       }
       .quantity-container {
         display: flex;
@@ -267,13 +267,13 @@
         height: 30px;
         cursor: pointer;
         border-radius: 4px;
-        border: 1px solid gainsboro;
+        border: 1px solid $border-color;
         background-color: #ffffff;
       }
 
       .quantity:hover {
-        background-color: gainsboro;
-        border: 1px solid gainsboro;
+        background-color: $border-color;
+        border: 1px solid $border-color;
       }
     }
   }

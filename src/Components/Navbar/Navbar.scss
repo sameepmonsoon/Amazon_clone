@@ -12,11 +12,20 @@
   padding: 0 1rem;
   z-index: 100;
   & .navbar-icon {
+  
     cursor: pointer;
-    color: $yellow;
+    color: white;
     object-fit: contain;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 0;
-    padding: 2px;
+    border: 1px solid transparent;
+
+  }
+  .navbar-icon:hover{
+    border: 1px solid white;
+    border-radius: 2px;
   }
   @media screen and (max-width: $small) {
     display: flex;
@@ -31,6 +40,7 @@
     // padding: 0 1px;
     z-index: 100;
     .navbar-icon {
+      fill: white;
     }
     .navbar-options {
       display: none;
