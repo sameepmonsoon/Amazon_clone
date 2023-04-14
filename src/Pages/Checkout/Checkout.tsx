@@ -20,11 +20,10 @@ const Checkout = (props: { checkoutAds?: React.ReactNode }) => {
   const dispatch = useDispatch();
 
   const cartItems = useSelector((state: any) => state.cart);
-  const localItemsCart = JSON.parse(localStorage.getItem("cartItems") || "[]");
-
+  const localItemsCart = JSON.parse(Cookies.get("cartItems") || "[]");
   useEffect(() => {
     if (localItemsCart.length === 0) {
-      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+      Cookies.set("cartItems", JSON.stringify(cartItems), { expires: 1 });
     }
   }, [cartItems]);
 
