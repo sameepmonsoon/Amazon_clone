@@ -10,7 +10,9 @@ interface CartState {
   totalPrice: number;
 }
 
-const initialState: CartState[] = [];
+const initialState: CartState[] = JSON.parse(
+  localStorage.getItem("cartItems") || "[]"
+);
 export const getCartTotal = (cartItems: Array<any>) => {
   return cartItems?.reduce((amount: any, item: any) => {
     const itemTotal = item.price * item.quantity;
@@ -39,20 +41,30 @@ const cartSlicer = createSlice({
         };
         state.push(newItem);
       }
+      console.log(action.payload);
+      localStorage.setItem("cartItems", JSON.stringify(state));
     },
     removeFromCart(state: any, action: any) {
       const updatedState = state.filter(
         (item: any) => item.id !== action.payload
       );
-      Cookies.set(CART_COOKIE, JSON.stringify(updatedState));
+      localStorage.setItem("cartItems", JSON.stringify(updatedState));
+
+      // Cooki es.set(CART_COOKIE, JSON.stringify(updatedState));
       return updatedState;
     },
     incrementCartItem(state: any, action: any) {
       const item = state.find((item: any) => item.id === action.payload);
       if (item) {
-        item.quantity++;
-        item.totalPrice = item.price * item.quantity;
-        Cookies.set(CART_COOKIE, JSON.stringify(state));
+        if (item.quantity >= 10) {
+          item.quantity = 10;
+          item.totalPrice = item.price * item.quantity;
+          localStorage.setItem("cartItems", JSON.stringify(state));
+        } else {
+          item.quantity++;
+          item.totalPrice = item.price * item.quantity;
+          localStorage.setItem("cartItems", JSON.stringify(state));
+        }
       }
     },
     decrementCartItem(state: any, action: any) {
@@ -68,7 +80,7 @@ const cartSlicer = createSlice({
             state.items.splice(index, 1);
           }
         }
-        Cookies.set(CART_COOKIE, JSON.stringify(state));
+        localStorage.setItem("cartItems", JSON.stringify(state));
       }
     },
   },

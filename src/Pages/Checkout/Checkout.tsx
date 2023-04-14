@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import HomeLayout from "../Layout/HomeLayout";
-import Card from "../Components/Cards/ProductCard/Card";
+import React, { useEffect, useState } from "react";
+import HomeLayout from "../../Layout/HomeLayout";
+import Card from "../../Components/Cards/ProductCard/Card";
 import "./Checkout.scss";
-import SubTotalCard from "../Components/Cards/SubTotalCard/SubTotalCard";
+import SubTotalCard from "../../Components/Cards/SubTotalCard/SubTotalCard";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getCartTotal,
@@ -10,7 +10,7 @@ import {
   incrementCartItem,
   decrementCartItem,
   addToCart,
-} from "../store/cartSlice";
+} from "../../store/cartSlice";
 import { AiOutlineDelete } from "react-icons/ai";
 import { MdAdd } from "react-icons/md";
 import { HiMinusSm } from "react-icons/hi";
@@ -20,13 +20,13 @@ const Checkout = (props: { checkoutAds?: React.ReactNode }) => {
   const dispatch = useDispatch();
 
   const cartItems = useSelector((state: any) => state.cart);
-  console.log("outside useeff", cartItems);
+  const localItemsCart = JSON.parse(localStorage.getItem("cartItems") || "[]");
 
   useEffect(() => {
-    const cartItems = JSON.parse(Cookies.get("cartItems") || "[]");
-    //@ts-ignore
-    dispatch(addToCart(cartItems));
-  }, []);
+    if (localItemsCart.length === 0) {
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    }
+  }, [cartItems]);
 
   function removeItem(item: any) {
     dispatch(removeFromCart(item));

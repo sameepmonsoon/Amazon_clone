@@ -1,12 +1,14 @@
 import { useState } from "react";
-import Home from "./Pages/Home";
+import Home from "./Pages/Home/Home";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Checkout from "./Pages/Checkout";
+import Checkout from "./Pages/Checkout/Checkout";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 import { GrAmazon } from "react-icons/all";
 import { renderToString } from "react-dom/server";
 import { Helmet } from "react-helmet";
+import LoginSignup from "./Pages/LoginSignup/LoginSignup";
+import PageNotFound from "./Pages/PageNotFound/PageNotFound";
 function App() {
   const [count, setCount] = useState(0);
   const StyledCartIcon = () => (
@@ -19,6 +21,10 @@ function App() {
 
   const router: any = createBrowserRouter([
     {
+      path: "*",
+      element: <PageNotFound />,
+    },
+    {
       path: "/",
       element: <Home />,
     },
@@ -26,12 +32,13 @@ function App() {
       path: "/checkout",
       element: <Checkout />,
     },
+    { path: "/login", element: <LoginSignup /> },
+    { path: "/signup", element: <LoginSignup /> },
   ]);
   return (
     <>
-      {" "}
       <Helmet>
-        <title>Shopping Cart</title>
+        <title>Amazon</title>
         <link
           rel="icon"
           type="image/svg+xml"

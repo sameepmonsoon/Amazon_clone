@@ -1,0 +1,10 @@
+@import "../../scss/Variables.scss";
+.signup,
+.login {
+  height: 100%;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
