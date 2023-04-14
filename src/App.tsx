@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Checkout from "./Pages/Checkout/Checkout";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
-import { GrAmazon } from "react-icons/all";
+import { AiFillAmazonSquare } from "react-icons/all";
 import { renderToString } from "react-dom/server";
 import { Helmet } from "react-helmet";
 import LoginSignup from "./Pages/LoginSignup/LoginSignup";
@@ -12,7 +12,7 @@ import PageNotFound from "./Pages/PageNotFound/PageNotFound";
 function App() {
   const [count, setCount] = useState(0);
   const StyledCartIcon = () => (
-    <GrAmazon size={35} style={{ color: "#ff9900" }} />
+    <AiFillAmazonSquare size={35} style={{ color: "white" }} />
   );
 
   // Convert the styled icon to a base64 string

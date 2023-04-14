@@ -1,8 +1,21 @@
 @import "../../scss/Variables.scss";
-
+.form-main-div {
+  display: flex;
+  align-content: center;
+  flex-flow: column;
+  justify-content: space-between;
+  .form-amazon-icon {
+    width: auto;
+    background-color: #ffffff;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
 .form-container {
   background-color: white;
-  border: 1px solid gainsboro;
+  border: 1px solid $border-color;
   width: 22rem;
   display: flex;
   justify-content: center;
@@ -19,7 +32,7 @@
   }
   .textfields {
     width: 85%;
-    display: flex ;
+    display: flex;
     flex-flow: column nowrap;
     gap: 10px;
   }
