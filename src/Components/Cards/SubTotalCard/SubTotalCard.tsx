@@ -8,7 +8,7 @@ const SubTotalCard = (props: {
 }) => {
   const { totalItems, totalAmount, giftCard, subtotalButton } = props;
   console.log(totalAmount);
-  
+
   return (
     <div className="subtotal-card">
       <p>

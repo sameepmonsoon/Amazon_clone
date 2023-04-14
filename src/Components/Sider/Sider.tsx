@@ -1,11 +1,8 @@
 import React from "react";
-import "./Navbar.scss";
+import "./sider.scss";
 import { TbSearch } from "react-icons/all";
 import { useNavigate } from "react-router-dom";
-import Sider from "../Sider/Sider";
-import { ImAmazon, BsCart2 } from "react-icons/all";
-
-const Navbar = (props: {
+const Sider = (props: {
   icon: React.ReactNode;
   cartIcon: React.ReactNode;
   cartItems: number;
@@ -14,20 +11,13 @@ const Navbar = (props: {
   const navigate = useNavigate();
 
   return (
-    <div className="navbar">
+    <div className="sider">
       <span
         className="navbar-icon"
         onClick={() => {
           navigate("/");
         }}>
         {icon}
-      </span>
-      <span className="navbar-search">
-        <span className="navbar-search-filter">All</span>
-        <input type="text" placeholder="Search Amazon" />
-        <span className="search-icon">
-          <TbSearch size={25} />
-        </span>
       </span>
       <div className="navbar-options">
         <span
@@ -48,4 +38,4 @@ const Navbar = (props: {
   );
 };
 
-export default Navbar;
+export default Sider;

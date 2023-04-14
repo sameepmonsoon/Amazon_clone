@@ -1,20 +1,27 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./HeroSection.scss";
-import Card from "../../Components/Cards/ProductCard/Card";
+import Card from "../../../Components/Cards/ProductCard/Card";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../../store/cartSlice";
-import { fetchProducts } from "../../store/productSlice";
+import { addToCart } from "../../../store/cartSlice";
+import { fetchProducts } from "../../../store/productSlice";
 import Cookies from "js-cookie";
 
 const HeroSection = () => {
   const dispatch = useDispatch();
   const { data: products, status } = useSelector((state: any) => state.product);
-  console.log(products);
+  console.log("cart items", products);
   function addToBasket(value: any) {
     dispatch(addToCart(value));
-    Cookies.set("cartItems", JSON.stringify(value));
+    console.log("added value", value);
   }
 
+  const [cartItems, setCartItems] = useState<any>(
+    JSON.parse(localStorage.getItem("cartItems") || "")
+  );
+
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
   useEffect(() => {
     // @ts-ignore
     dispatch(fetchProducts());
