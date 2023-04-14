@@ -1,0 +1,36 @@
+@import "../../scss/Variables.scss";
+
+.footer {
+  width: 100%;
+  min-height: 20rem;
+  background-color: $navbar-color;
+  color: white;
+  padding: 10px;
+  font-size: 12px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: center;
+
+  & .footer-copyright {
+    height: 40px;
+    display: flex;
+    flex-flow: column;
+    gap: 4px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footer-copyright-details {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    & {
+      cursor: pointer;
+    }
+    span:hover {
+      text-decoration: underline;
+    }
+  }
+}
