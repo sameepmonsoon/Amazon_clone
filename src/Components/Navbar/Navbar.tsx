@@ -43,14 +43,26 @@ const Navbar = (props: {
       <div className="navbar-options">
         <span
           className="navbar-option-one"
-          onMouseOver={() => setIsOpen(true)}
-          onMouseLeave={() => setIsOpen(false)}>
+          onMouseOver={() => {
+            setIsOpen(true);
+          }}
+          onMouseLeave={() => {
+            setTimeout(() => {
+              setIsOpen(false);
+            }, 400);
+          }}>
           Hello {currentUserName ? `${currentUserName}` : "Guest ,Sign In"}
           {isOpen && (
             <div
               className="navbar-user-menu-container"
-              onMouseOver={() => setIsOpen(true)}
-              onMouseLeave={() => setIsOpen(false)}>
+              onMouseOver={() => {
+                setIsOpen(true);
+              }}
+              onMouseLeave={() => {
+                setTimeout(() => {
+                  setIsOpen(false);
+                }, 400);
+              }}>
               <p
                 className="navbar-user-menu-link"
                 onClick={() => {
@@ -88,7 +100,7 @@ const Navbar = (props: {
         <span className="navbar-option-two">Return Orders</span>
         <span
           className="navbar-option-three"
-          onClick={() => navigate("/profile")}>
+          onClick={() => navigate("/checkout")}>
           {cartIcon} {cartItems}
         </span>
       </div>
