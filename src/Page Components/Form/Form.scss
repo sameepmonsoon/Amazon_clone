@@ -6,7 +6,7 @@
   justify-content: space-between;
   .form-amazon-icon {
     width: auto;
-    background-color: #ffffff;
+    // background-color: #ffffff;
     color: black;
     display: flex;
     align-items: center;
@@ -16,6 +16,7 @@
 .form-container {
   background-color: white;
   border: 1px solid $border-color;
+  border-radius: 4px;
   width: 22rem;
   display: flex;
   justify-content: center;
