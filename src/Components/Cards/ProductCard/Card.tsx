@@ -31,8 +31,8 @@ const Card = (props: {
   } = props;
   const item: Array<React.ReactNode> = [];
 
-  for (let i: number = 0; i <= Math.ceil(ratings); i++) {
-    if (i < ratings) {
+  for (let i: number = 0; i < 5; i++) {
+    if (i <= ratings) {
       item.push(<HiStar size={18} key={i} />);
     } else {
       item.push(<HiOutlineStar size={18} key={i} />);

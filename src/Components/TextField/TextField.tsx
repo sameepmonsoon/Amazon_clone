@@ -92,7 +92,6 @@ export const TextField = forwardRef(
             name={name}
             value={value}
             placeholder={placeholder || friendlyName(name)}
-            defaultValue={defaultValueState}
             onChange={onChange}
             onBlur={onBlur}
             onFocus={onFocus}

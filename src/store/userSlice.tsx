@@ -19,7 +19,7 @@ const userSlice = createSlice({
     loginFailure: (state) => {
       (state.isLoading = true), (state.error = true);
     },
-    logout(state: any, action: any) {
+    logout(state: any) {
       return initialState;
     },
   },
