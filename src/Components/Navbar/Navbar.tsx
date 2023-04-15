@@ -9,8 +9,9 @@ const Navbar = (props: {
   icon: React.ReactNode;
   cartIcon: React.ReactNode;
   cartItems: number;
+  currentUser: string;
 }) => {
-  const { icon, cartIcon, cartItems } = props;
+  const { icon, cartIcon, cartItems, currentUser } = props;
   const navigate = useNavigate();
 
   return (
@@ -35,7 +36,7 @@ const Navbar = (props: {
           onClick={() => {
             navigate("/login");
           }}>
-          Hello Guest,Sign In
+          Hello ,{currentUser ? `${currentUser}` : "Guest ,Sign In"}
         </span>
         <span className="navbar-option-two">Return Orders</span>
         <span

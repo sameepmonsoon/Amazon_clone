@@ -2,7 +2,9 @@ import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import HomeLayout from "../../Layout/HomeLayout";
 import "./LoginSignup.scss";
-import Form from "../../Page Components/Form/Form";
+import Form from "../../Page Components/Form/SignUp";
+import Login from "../../Page Components/Form/Login";
+import SignUp from "../../Page Components/Form/SignUp";
 const LoginSignup = () => {
   const navigate = useNavigate();
   const location: any = useLocation();
@@ -11,7 +13,7 @@ const LoginSignup = () => {
       <HomeLayout
         children={
           <div className="signup">
-            <Form children={""} type="signup" />
+            <SignUp children={""} />
           </div>
         }
       />
@@ -21,7 +23,7 @@ const LoginSignup = () => {
       <HomeLayout
         children={
           <div className="login">
-            <Form children={""} type="signin" />
+            <Login children={""} />
           </div>
         }
       />
