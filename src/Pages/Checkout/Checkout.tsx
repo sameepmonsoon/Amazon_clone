@@ -15,6 +15,8 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { MdAdd } from "react-icons/md";
 import { HiMinusSm } from "react-icons/hi";
 import Cookies from "js-cookie";
+import axios from "axios";
+import { HTTPMethods } from "../../Utils/HTTPMethods";
 const Checkout = (props: { checkoutAds?: React.ReactNode }) => {
   const { checkoutAds } = props;
   const dispatch = useDispatch();
@@ -35,6 +37,11 @@ const Checkout = (props: { checkoutAds?: React.ReactNode }) => {
   }
   function decrementCart(item: any) {
     dispatch(decrementCartItem(item));
+  }
+
+
+  const handleCart=()=>{
+    HTTPMethods.post("/cart/addCart",cartItems).then((res)=>{console.log(res)}).catch((err)=>console.log(err.message))
   }
   return (
     <HomeLayout
@@ -89,7 +96,7 @@ const Checkout = (props: { checkoutAds?: React.ReactNode }) => {
               <SubTotalCard
                 totalAmount={getCartTotal(cartItems)}
                 totalItems={cartItems.length}
-                subtotalButton={<></>}
+                subtotalButton={<button onClick={()=>{handleCart()}}>Add to Collection</button>}
               />
             </div>
           </div>

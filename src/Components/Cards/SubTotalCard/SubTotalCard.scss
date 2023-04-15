@@ -12,6 +12,9 @@
 }
 
 .subtotal-button {
+  display: flex;
+  flex-flow: column;
+  gap: 10px;
   & button {
     cursor: pointer;
 

@@ -26,8 +26,7 @@ const SubTotalCard = (props: {
         </p>
       )}
       <span className="subtotal-button">
-        {subtotalButton}
-        <button>Checkout</button>
+        <> {subtotalButton}</> <button>Checkout</button>
       </span>
     </div>
   );
