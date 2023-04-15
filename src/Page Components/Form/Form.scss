@@ -63,4 +63,7 @@
     border: 1px solid gray;
     color: black;
   }
+  .form-error::placeholder {
+    color: red;
+  }
 }

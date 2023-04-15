@@ -96,7 +96,6 @@ export const TextField = forwardRef(
             onChange={onChange}
             onBlur={onBlur}
             onFocus={onFocus}
-            prefix={!!prefix}
             min={min || 0}
             maxLength={maxLength || 35}
             type={type}
