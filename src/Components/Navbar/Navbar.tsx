@@ -2,18 +2,26 @@ import React from "react";
 import "./Navbar.scss";
 import { TbSearch } from "react-icons/all";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import Sider from "../Sider/Sider";
 import { ImAmazon, BsCart2 } from "react-icons/all";
-
+import { logout } from "../../store/userSlice";
 const Navbar = (props: {
   icon: React.ReactNode;
   cartIcon: React.ReactNode;
   cartItems: number;
-  currentUser: string;
+  currentUserName: string;
 }) => {
-  const { icon, cartIcon, cartItems, currentUser } = props;
+  const { icon, cartIcon, cartItems, currentUserName } = props;
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
+  const { currentUser } = useSelector((state: any) => state.user);
+  const handleLogin = () => {
+    if (currentUser) {
+      // dispatch(logout());
+      navigate("/profile");
+    } else navigate("/login");
+  };
   return (
     <div className="navbar">
       <span
@@ -34,9 +42,9 @@ const Navbar = (props: {
         <span
           className="navbar-option-one"
           onClick={() => {
-            navigate("/login");
+            handleLogin();
           }}>
-          Hello ,{currentUser ? `${currentUser}` : "Guest ,Sign In"}
+          Hello ,{currentUserName ? `${currentUserName}` : "Guest ,Sign In"}
         </span>
         <span className="navbar-option-two">Return Orders</span>
         <span

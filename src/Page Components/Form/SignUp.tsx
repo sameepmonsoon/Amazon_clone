@@ -15,12 +15,10 @@ const Form = (props: { children: React.ReactNode }) => {
   const [isSignIn, setIsSignIn] = useState(false);
   const navigate = useNavigate();
   // yup validation
-  let Schema = yup.object().shape({
+  const Schema = yup.object().shape({
     username:
-      isSignIn === false
-        ? yup.string().required("username is required.")
-        : null,
-    email: yup.string().required("Email is required."),
+      isSignIn === false ? yup.string().required("Enter your name") : null,
+    email: yup.string().required("Enter your email"),
     password: yup
       .string()
       .min(5, "At least 5 characters required")
@@ -71,13 +69,14 @@ const Form = (props: { children: React.ReactNode }) => {
         <AiFillAmazonSquare size={50} />
       </span>
       <form className="form-container" onSubmit={formik.handleSubmit}>
-        <h2>Sign Up</h2>
+        <h2>Create account</h2>
         <div className="textfields">
           <TextField
             {...formik.getFieldProps("username")}
             type="text"
+            label="Your Name"
             name="username"
-            placeholder="Username"
+            placeholder="First and last name"
             onChange={formik.handleChange}
             onChange={formik.handleChange}
             placeholder={
@@ -92,7 +91,7 @@ const Form = (props: { children: React.ReactNode }) => {
             {...formik.getFieldProps("email")}
             type="email"
             name="email"
-            placeholder="Email"
+            placeholder=""
             onChange={formik.handleChange}
             placeholder={
               formik.touched && formik.errors.email
@@ -112,7 +111,7 @@ const Form = (props: { children: React.ReactNode }) => {
             placeholder={
               formik.touched && formik.errors.password
                 ? formik.errors.password
-                : "password"
+                : "At least 5 characters"
             }
             className={
               formik.touched && formik.errors.password ? "form-error" : ""
@@ -127,7 +126,7 @@ const Form = (props: { children: React.ReactNode }) => {
             placeholder={
               formik.touched && formik.errors.confirmPassword
                 ? formik.errors.confirmPassword
-                : "Confirm Password"
+                : ""
             }
             className={
               formik.touched && formik.errors.confirmPassword
@@ -143,7 +142,7 @@ const Form = (props: { children: React.ReactNode }) => {
             formik.handleSubmit();
             setIsSignIn(false);
           }}>
-          sign up
+          Continue
         </button>
         <p>
           By signing-up you agree to Amazon's Condition of Use & Sale. Please

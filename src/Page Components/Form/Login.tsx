@@ -9,7 +9,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { HTTPMethods } from "../../Utils/HTTPMethods";
 import Cookies from "js-cookie";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   login,
   loginSuccess,
@@ -22,7 +22,7 @@ const Login = (props: { children: React.ReactNode }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   // yup validation
-  let Schema = yup.object().shape({
+  const Schema = yup.object().shape({
     email: yup.string().required("Email is required."),
     password: yup
       .string()
@@ -94,7 +94,7 @@ const Login = (props: { children: React.ReactNode }) => {
             />
           </span>
         </div>
-        <button type="submit">sign In</button>
+        <button type="submit">Continue</button>
         <p>
           By signing-in you agree to Amazon's Condition of Use & Sale. Please
           see out Privacy Notice , our Cookies Notice and our interest-Based Ads

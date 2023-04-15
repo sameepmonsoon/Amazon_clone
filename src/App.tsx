@@ -9,6 +9,7 @@ import { renderToString } from "react-dom/server";
 import { Helmet } from "react-helmet";
 import LoginSignup from "./Pages/LoginSignup/LoginSignup";
 import PageNotFound from "./Pages/PageNotFound/PageNotFound";
+import Profile from "./Pages/Profile/Profile";
 function App() {
   const [count, setCount] = useState(0);
   const StyledCartIcon = () => (
@@ -34,6 +35,7 @@ function App() {
     },
     { path: "/login", element: <LoginSignup /> },
     { path: "/signup", element: <LoginSignup /> },
+    { path: "/profile", element: <Profile /> },
   ]);
   return (
     <>

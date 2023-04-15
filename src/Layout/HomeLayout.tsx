@@ -17,7 +17,7 @@ const HomeLayout = (props: HomeLayoutTypes) => {
         icon={<AiFillAmazonSquare size={45} />}
         cartIcon={<BsCart2 size={25} />}
         cartItems={cartItems.length}
-        currentUser={currentUser?.username}
+        currentUserName={currentUser?.username}
       />
       <div>{children}</div>
       <Footer />
