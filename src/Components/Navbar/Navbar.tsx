@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Navbar.scss";
 import { TbSearch } from "react-icons/all";
 import { useNavigate } from "react-router-dom";
@@ -15,8 +15,10 @@ const Navbar = (props: {
   const { icon, cartIcon, cartItems, currentUserName } = props;
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [isOpen, setIsOpen] = useState(false);
   const { currentUser } = useSelector((state: any) => state.user);
   const handleLogin = () => {
+    console.log("object");
     if (currentUser) {
       // dispatch(logout());
       navigate("/profile");
@@ -41,15 +43,52 @@ const Navbar = (props: {
       <div className="navbar-options">
         <span
           className="navbar-option-one"
-          onClick={() => {
-            handleLogin();
-          }}>
-          Hello ,{currentUserName ? `${currentUserName}` : "Guest ,Sign In"}
+          onMouseOver={() => setIsOpen(true)}
+          onMouseLeave={() => setIsOpen(false)}>
+          Hello {currentUserName ? `${currentUserName}` : "Guest ,Sign In"}
+          {isOpen && (
+            <div
+              className="navbar-user-menu-container"
+              onMouseOver={() => setIsOpen(true)}
+              onMouseLeave={() => setIsOpen(false)}>
+              <p
+                className="navbar-user-menu-link"
+                onClick={() => {
+                  handleLogin();
+                }}>
+                <button>Sign in</button>
+                <span>
+                  New customer? <a href="/login">Start here</a>
+                </span>
+              </p>
+              <div className="navbar-user-menu-div">
+                <div className="navbar-user-details">
+                  <ul>
+                    <li className="navbar-user-menu-item">Orders</li>
+                    <li className="navbar-user-menu-item">Account</li>
+                  </ul>
+                </div>
+                <div className="navbar-user-menu">
+                  <h3>Your Acccount</h3>
+                  <ul>
+                    <li className="navbar-user-menu-item">Orders</li>
+                    <li
+                      className="navbar-user-menu-item"
+                      onClick={() => {
+                        handleLogin();
+                      }}>
+                      Account
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          )}
         </span>
         <span className="navbar-option-two">Return Orders</span>
         <span
           className="navbar-option-three"
-          onClick={() => navigate("/checkout")}>
+          onClick={() => navigate("/profile")}>
           {cartIcon} {cartItems}
         </span>
       </div>

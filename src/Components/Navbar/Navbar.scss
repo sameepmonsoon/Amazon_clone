@@ -1,4 +1,19 @@
 @import "../../scss//Variables.scss";
+button {
+  width: 50%;
+  height: 30px;
+  border-radius: 2px;
+  text-transform: capitalize;
+  border: 1px solid $yellow;
+  border-radius: 7px;
+  background-color: $yellow;
+  cursor: pointer;
+  opacity: 0.8;
+  font-weight: 600;
+}
+button:hover {
+  opacity: 1;
+}
 .navbar {
   background-color: $navbar-color;
   width: auto;
@@ -12,7 +27,6 @@
   padding: 0 1rem;
   z-index: 100;
   & .navbar-icon {
-  
     cursor: pointer;
     color: white;
     object-fit: contain;
@@ -21,11 +35,125 @@
     align-items: center;
     margin: 0;
     border: 1px solid transparent;
-
   }
-  .navbar-icon:hover{
+  .navbar-icon:hover {
     border: 1px solid white;
     border-radius: 2px;
+  }
+  .navbar-user-menu-container {
+    .navbar-user-menu-div {
+      display: flex;
+      flex-flow: row;
+      justify-content: start;
+      align-items: start;
+      gap: 10px;
+      width: 100%;
+      height: auto;
+    }
+    .navbar-user-menu-link {
+      width: 100%;
+      display: flex;
+      flex-flow: column;
+      justify-content: center;
+      align-items: center;
+      height: auto;
+      max-height: 7rem;
+      gap: 3px;
+      padding: 10px 0;
+      border-bottom: 1px solid $border-color;
+      & span {
+        min-height: 5px;
+        min-width: 60px;
+        height: auto;
+        width: auto;
+        padding: 6px;
+        display: flex;
+        font-size: 12px;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        border-radius: 2px;
+        border: 1px solid transparent;
+        a {
+          color: blue;
+          text-decoration: none;
+        }
+      }
+      & span:hover {
+        border: 1px solid white;
+      }
+    }
+    .navbar-user-menu {
+      display: flex;
+      flex-flow: column;
+      justify-content: start;
+      align-items: start;
+      height: 100%;
+      width: 50%;
+      gap: 4px;
+      ul {
+        display: flex;
+        align-items: start;
+        flex-flow: column;
+        justify-content: start;
+      }
+      h3 {
+        font-weight: 700;
+        font-size: 16px;
+        width: 100%;
+      }
+    }
+    .navbar-user-details {
+      min-width: 50%;
+      height: 100%;
+      overflow: hidden;
+      padding: 4px;
+      border-right: 1px solid $border-color;
+    }
+    & span:hover {
+      border: none;
+    }
+    position: absolute;
+    top: 43px;
+    background-color: white;
+    color: black;
+    height: auto;
+    min-height: 15rem;
+    max-height: 20rem;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: start;
+    align-items: center;
+    gap: 15px;
+    list-style-type: none;
+    margin: 5px 0;
+    padding: 4px;
+    border: 1px solid $border-color;
+    width: auto;
+    min-width: 25rem;
+    border-radius: 2px;
+
+    & .navbar-user-menu-item {
+      height: 25px;
+      display: flex;
+      width: auto;
+      font-size: 14px;
+      color: gray;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+    }
+    & .navbar-user-menu-item:hover {
+      display: flex;
+      width: auto;
+      color: $yellow;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      border-bottom: 2px solid $yellow;
+    }
   }
   @media screen and (max-width: $small) {
     display: flex;
@@ -105,6 +233,7 @@
       font-size: 14px;
       font-weight: 400;
       flex: 1;
+
       & span {
         min-height: 30px;
         min-width: 60px;
