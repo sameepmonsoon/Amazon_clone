@@ -22,7 +22,21 @@ type TextFieldProps = {
   disabled?: boolean;
   maxLength?: number;
 };
-
+export function friendlyName(name: string) {
+  if (name) {
+    return name
+      .trim()
+      .replace("_id", "")
+      .replace(/[\W_]+/g, " ")
+      .split(" ")
+      .map(
+        (element) =>
+          element.charAt(0).toUpperCase() + element.slice(1).toLowerCase()
+      )
+      .join(" ");
+  }
+  return "";
+}
 export const TextField = forwardRef(
   (
     {
