@@ -68,7 +68,7 @@ const Navbar = (props: {
                 }}>
                 <button>Sign in</button>
                 <span>
-                  New customer? <a href="/signup">Start here</a>
+                  New customer? <a href="/signup">&nbsp;Start here</a>
                 </span>
               </p>
               <div className="navbar-user-menu-div">
@@ -79,11 +79,7 @@ const Navbar = (props: {
                       onClick={() => navigate("/collection")}>
                       Collection
                     </li>
-                  </ul>
-                </div>
-                <div className="navbar-user-menu">
-                  <h3>Your Acccount</h3>
-                  <ul>
+
                     <li className="navbar-user-menu-item">Orders</li>
                     <li
                       className="navbar-user-menu-item"

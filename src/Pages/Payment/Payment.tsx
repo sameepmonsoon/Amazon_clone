@@ -89,7 +89,7 @@ const Payment = () => {
           <div className="payment-address">
             <h3>payment method</h3>
             <form className="address-form" onSubmit={handleSubmit}>
-              <div className="card">
+              <div className="payment-card">
                 card details <br />
                 <CardElement onChange={handleChange} />
               </div>
