@@ -49,7 +49,7 @@ const Navbar = (props: {
               setIsOpen(false);
             }, 400);
           }}>
-          Hello {currentUserName ? `${currentUserName}` : "Guest ,Sign In"}
+          Hello {currentUserName ? `${currentUserName}` : "Guest"}
           {isOpen && (
             <div
               className="navbar-user-menu-container"

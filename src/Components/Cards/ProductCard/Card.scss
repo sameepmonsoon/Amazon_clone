@@ -173,7 +173,7 @@
   & .card-details {
     background-color: white;
     gap: 4px;
-    height: 90%;
+    min-height: 85%;
     padding: 10px 5px;
     font-size: 17px;
     font-weight: 500;
@@ -277,4 +277,10 @@
       }
     }
   }
+}
+p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
 }

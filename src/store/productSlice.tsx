@@ -32,6 +32,7 @@ export function fetchProducts() {
         const productsWithQuantity = res.data.map((product: any) => ({
           ...product,
           quantity: 0,
+          price: product.price * 50,
         }));
         dispatch(setProducts(productsWithQuantity));
         dispatch(setStatus(STATUS.IDLE));
