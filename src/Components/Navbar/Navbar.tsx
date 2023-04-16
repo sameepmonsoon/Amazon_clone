@@ -79,8 +79,6 @@ const Navbar = (props: {
                       onClick={() => navigate("/collection")}>
                       Collection
                     </li>
-                    <li className="navbar-user-menu-item">Orders</li>
-                    <li className="navbar-user-menu-item">Account</li>
                   </ul>
                 </div>
                 <div className="navbar-user-menu">

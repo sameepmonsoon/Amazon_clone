@@ -17,13 +17,15 @@ import { HiMinusSm } from "react-icons/hi";
 import Cookies from "js-cookie";
 import axios from "axios";
 import { HTTPMethods } from "../../Utils/HTTPMethods";
+import { useNavigate } from "react-router-dom";
 const Checkout = (props: { checkoutAds?: React.ReactNode }) => {
   const { checkoutAds } = props;
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state: any) => state.user);
   const cartItems = useSelector((state: any) => state.cart);
-  console.log(cartItems);
   const localItemsCart = JSON.parse(Cookies.get("cartItems") || "[]");
+  const navigate = useNavigate();
+  // to get the cookie data and set it
   useEffect(() => {
     if (localItemsCart.length === 0) {
       Cookies.set("cartItems", JSON.stringify(cartItems), { expires: 1 });
@@ -110,6 +112,14 @@ const Checkout = (props: { checkoutAds?: React.ReactNode }) => {
                       handleCart();
                     }}>
                     Add to Collection
+                  </button>
+                }
+                subtotalCheckoutButton={
+                  <button
+                    onClick={() => {
+                      navigate("/payment")
+                    }}>
+                    Proceed To pyament
                   </button>
                 }
               />

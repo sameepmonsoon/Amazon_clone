@@ -4,9 +4,16 @@ const SubTotalCard = (props: {
   totalItems?: number;
   totalAmount?: number | any;
   subtotalButton: React.ReactNode;
+  subtotalCheckoutButton: React.ReactNode;
   giftCard?: boolean;
 }) => {
-  const { totalItems, totalAmount, giftCard, subtotalButton } = props;
+  const {
+    totalItems,
+    totalAmount,
+    giftCard,
+    subtotalButton,
+    subtotalCheckoutButton,
+  } = props;
 
   return (
     <div className="subtotal-card">
@@ -29,7 +36,7 @@ const SubTotalCard = (props: {
         </p>
       )}
       <span className="subtotal-button">
-        <> {subtotalButton}</> <button>Proceed To pyament</button>
+        <> {subtotalButton}</> <>{subtotalCheckoutButton}</>
       </span>
     </div>
   );
