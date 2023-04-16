@@ -14,12 +14,14 @@ const userSlice = createSlice({
       (state.isLoading = false), (state.currentUser = action.payload);
     },
     loginSuccess: (state, action) => {
+      Cookies.set("userToken", action.payload.token);
       (state.isLoading = false), (state.currentUser = action.payload);
     },
     loginFailure: (state) => {
       (state.isLoading = true), (state.error = true);
     },
     logout(state: any) {
+      Cookies.remove("userToken");
       return initialState;
     },
   },

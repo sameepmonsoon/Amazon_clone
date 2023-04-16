@@ -41,13 +41,14 @@ const Checkout = (props: { checkoutAds?: React.ReactNode }) => {
 
   const handleCart = () => {
     if (currentUser)
-      HTTPMethods.post("/cart/addCart", cartItems)
+      HTTPMethods.post(`/cart/${currentUser._id}/cart`, cartItems)
         .then((res) => {
           console.log(res);
         })
         .catch((err) => console.log(err.message));
     else {
-alert("please login to continue")    }
+      alert("please login to continue");
+    }
   };
   return (
     <HomeLayout
