@@ -1,5 +1,6 @@
 import React from "react";
 import "./SubTotalCard.scss";
+import { TbCurrencyRupeeNepalese } from "react-icons/tb";
 const SubTotalCard = (props: {
   totalItems?: number;
   totalAmount?: number | any;
@@ -20,7 +21,7 @@ const SubTotalCard = (props: {
       {totalAmount && (
         <p>
           <b>
-            Subtotal ({totalItems} items) : Rs
+            Subtotal ({totalItems} items) :<TbCurrencyRupeeNepalese size={18} />
             {totalAmount?.toFixed(2)}
           </b>
         </p>

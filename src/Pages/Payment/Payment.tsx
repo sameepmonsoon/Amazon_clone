@@ -25,14 +25,30 @@ const Payment = () => {
   const elements = useElements();
 
   useEffect(() => {
-    const getClient = async ()=>{
-        const response = await HTTPMethods.get
-    }
+    const getClient = async () => {
+      const response = await HTTPMethods.post(
+        `/payment/create`,
+        getCartTotal(cartItems)
+      );
+    };
+    getClient();
   }, []);
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.prevenDefault();
     setProcessing(true);
-    // const payload = await
+    const payload = await stripe
+      ?.confirmCardPayment(getCartTotal(cartItems), {
+        payment_method: {
+          // @ts-ignore
+          card: elements.getElement(CardElement),
+        },
+      })
+      .then(({ paymentIntent }) => {
+        setSucceeded(true);
+        // @ts-ignore
+        setError(null);
+        setProcessing(false);
+      });
   };
   const handleChange = (e: any) => {
     setDisabled(e.empty);
@@ -46,7 +62,7 @@ const Payment = () => {
             <h3>Delivery Address</h3>
             <form className="address-form">
               <span>
-                <MdEmail size={20} />
+                <MdEmail size={20} className="svg" />
                 <TextField
                   type="email"
                   name="email"
@@ -55,12 +71,12 @@ const Payment = () => {
               </span>
 
               <span>
-                <IoLocationOutline size={20} />
+                <IoLocationOutline size={20} className="svg" />
                 <TextField type="text" name="street" maxLength={20} />
               </span>
 
               <span>
-                <TbMap2 size={20} />
+                <TbMap2 size={20} className="svg" />
                 <TextField type="text" name="city" maxLength={15} />
               </span>
             </form>
@@ -69,12 +85,7 @@ const Payment = () => {
             <h3>payment method</h3>
             <form className="address-form" onSubmit={handleSubmit}>
               <span>
-                {" "}
                 <CardElement onChange={handleChange} />
-              </span>
-              <span>
-                <TextField type="checkbox" name="cash-on-delivery" />
-                <TextField type="checkbox" name="stripe" />
               </span>
               <span>
                 <SubTotalCard

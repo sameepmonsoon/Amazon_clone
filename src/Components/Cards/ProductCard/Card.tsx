@@ -3,6 +3,7 @@ import "./Card.scss";
 import { HiStar, HiOutlineStar } from "react-icons/hi2";
 import { CiShoppingTag } from "react-icons/ci";
 import { TfiTag } from "react-icons/tfi";
+import { TbCurrencyRupeeNepalese } from "react-icons/tb";
 const Card = (props: {
   id: number | string;
   image: string;
@@ -49,10 +50,13 @@ const Card = (props: {
           {category}
         </div>
         <div className="card-description">{description}</div>
-        <p>RS.{price}</p>
+        <p>
+          <TbCurrencyRupeeNepalese size={18} />
+          {price}
+        </p>
         <div className="card-ratings">
           <span className="card-ratings-star">
-            {ratings}
+            {Math.ceil(ratings)}
             {item}
           </span>
           <div className="card-button">
