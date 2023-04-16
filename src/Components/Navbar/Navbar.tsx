@@ -18,9 +18,7 @@ const Navbar = (props: {
   const [isOpen, setIsOpen] = useState(false);
   const { currentUser } = useSelector((state: any) => state.user);
   const handleLogin = () => {
-    console.log("object");
-    if (currentUser) {
-      // dispatch(logout());
+    if (currentUser.length !== 0) {
       navigate("/profile");
     } else navigate("/login");
   };
@@ -46,7 +44,7 @@ const Navbar = (props: {
           onMouseOver={() => {
             setIsOpen(true);
           }}
-          onMouseLeave={() => {
+          onClick={() => {
             setTimeout(() => {
               setIsOpen(false);
             }, 400);
@@ -76,7 +74,11 @@ const Navbar = (props: {
               <div className="navbar-user-menu-div">
                 <div className="navbar-user-details">
                   <ul>
-                    <li className="navbar-user-menu-item">Collection</li>
+                    <li
+                      className="navbar-user-menu-item"
+                      onClick={() => navigate("/collection")}>
+                      Collection
+                    </li>
                     <li className="navbar-user-menu-item">Orders</li>
                     <li className="navbar-user-menu-item">Account</li>
                   </ul>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import HomeLayout from "../../Layout/HomeLayout";
 import Card from "../../Components/Cards/ProductCard/Card";
-import "./Checkout.scss";
+import "../Checkout/Checkout.scss";
 import SubTotalCard from "../../Components/Cards/SubTotalCard/SubTotalCard";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -17,18 +17,31 @@ import { HiMinusSm } from "react-icons/hi";
 import Cookies from "js-cookie";
 import axios from "axios";
 import { HTTPMethods } from "../../Utils/HTTPMethods";
-const Checkout = (props: { checkoutAds?: React.ReactNode }) => {
+const Collection = (props: { checkoutAds?: React.ReactNode }) => {
   const { checkoutAds } = props;
+  const [collection, setCollection] = useState<any>([]);
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state: any) => state.user);
   const cartItems = useSelector((state: any) => state.cart);
-  console.log(cartItems);
   const localItemsCart = JSON.parse(Cookies.get("cartItems") || "[]");
+  console.log(collection);
+  const currentUserLocal =
+    JSON.parse(localStorage.getItem("currentUser") || "[]") || null;
   useEffect(() => {
     if (localItemsCart.length === 0) {
       Cookies.set("cartItems", JSON.stringify(cartItems), { expires: 1 });
     }
-  }, [cartItems]);
+
+    if (currentUser.length !== 0)
+      HTTPMethods.get(`/cart/${currentUserLocal._id}/getCart`)
+        .then((res) => {
+          setCollection(res.data[0]);
+        })
+        .catch((err) => console.log("Message:", err.message));
+    else {
+      alert("please login to continue");
+    }
+  }, [cartItems, location]);
 
   function removeItem(item: any) {
     dispatch(removeFromCart(item));
@@ -42,9 +55,10 @@ const Checkout = (props: { checkoutAds?: React.ReactNode }) => {
 
   const handleCart = () => {
     if (currentUser)
-      HTTPMethods.post(`/cart/${currentUser._id}/addCart`, cartItems)
+      HTTPMethods.post(`/cart/${currentUser._id}/cart`, cartItems)
         .then((res) => {
           console.log(res);
+          setCollection(res.data.cart?.cartItems[0]);
         })
         .catch((err) => console.log(err.message));
     else {
@@ -56,10 +70,10 @@ const Checkout = (props: { checkoutAds?: React.ReactNode }) => {
       children={
         <div className="checkout-container">
           <div className="checkout-ads">{checkoutAds}</div>
-          <h2 className="checkout-header">Your Shopping cart</h2>
+          <h2 className="checkout-header">Your Collection</h2>
           <div className="checkout-product-container">
             <div className="checkout-product">
-              {cartItems.map((item: any, index: number) => {
+              {collection.map((item: any, index: number) => {
                 return (
                   <div key={index}>
                     <Card
@@ -102,14 +116,12 @@ const Checkout = (props: { checkoutAds?: React.ReactNode }) => {
             </div>
             <div className="checkout-subtotal">
               <SubTotalCard
-                totalAmount={getCartTotal(cartItems)}
-                totalItems={cartItems.length}
                 subtotalButton={
                   <button
                     onClick={() => {
-                      handleCart();
+                      dispatch(addToCart(collection));
                     }}>
-                    Add to Collection
+                    Continue
                   </button>
                 }
               />
@@ -121,4 +133,4 @@ const Checkout = (props: { checkoutAds?: React.ReactNode }) => {
   );
 };
 
-export default Checkout;
+export default Collection;

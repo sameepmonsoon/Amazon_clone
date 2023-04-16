@@ -35,20 +35,18 @@ const Login = (props: { children: React.ReactNode }) => {
       email: "",
       password: "",
     },
-    onSubmit: (values, action) => {
+    onSubmit: (values, { resetForm }) => {
       dispatch(login());
-      console.log(values);
       HTTPMethods.post("/auth/signin", values)
         .then((res) => {
+          localStorage.setItem("userToken", res.data.token); // save token to local storage
           dispatch(loginSuccess(res.data));
-          console.log(res);
           navigate("/");
-
-          action.resetForm();
+          resetForm();
         })
         .catch((err) => {
           console.log(err.message);
-          action.resetForm();
+          resetForm();
           dispatch(loginFailure());
         });
     },
