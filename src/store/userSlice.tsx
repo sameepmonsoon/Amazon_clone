@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
+
 const initialState = {
-  currentUser: null,
+  currentUser: JSON.parse(localStorage.getItem("currentUser") || "[]") || null,
   isLoading: false,
   error: false,
 };
@@ -11,19 +12,32 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     login(state: any, action: any) {
-      (state.isLoading = false), (state.currentUser = action.payload);
+      state.isLoading = false;
+      state.currentUser = action.payload;
     },
     loginSuccess: (state, action) => {
+      localStorage.setItem("currentUser", JSON.stringify(action.payload));
       Cookies.set("userToken", action.payload.token);
-      (state.isLoading = false), (state.currentUser = action.payload);
+      state.isLoading = false;
+      state.currentUser = action.payload;
     },
     loginFailure: (state) => {
-      (state.isLoading = true), (state.error = true);
+      state.isLoading = true;
+      state.error = true;
     },
     logout(state: any) {
-      Cookies.remove("cartItems");
+      localStorage.removeItem("currentUser");
+      Cookies.remove("userToken");
       return initialState;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addMatcher(
+      (action) => action.type === "user/login/pending",
+      (state) => {
+        state.isLoading = true;
+      }
+    );
   },
 });
 

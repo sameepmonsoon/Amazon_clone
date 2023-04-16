@@ -24,18 +24,22 @@ const Collection = (props: { checkoutAds?: React.ReactNode }) => {
   const { currentUser } = useSelector((state: any) => state.user);
   const cartItems = useSelector((state: any) => state.cart);
   const localItemsCart = JSON.parse(Cookies.get("cartItems") || "[]");
+  console.log(currentUser._id);
+  const currentUserLocal =
+    JSON.parse(localStorage.getItem("currentUser") || "[]") || null;
+  console.log("locals", currentUserLocal._id);
   useEffect(() => {
     if (localItemsCart.length === 0) {
       Cookies.set("cartItems", JSON.stringify(cartItems), { expires: 1 });
     }
 
-    if (currentUser)
-      HTTPMethods.post(`/cart/${currentUser._id}/cart`, cartItems)
+    if (currentUser.length !== 0)
+      HTTPMethods.get(`/cart/${currentUserLocal._id}/cart`)
         .then((res) => {
-          console.log(res.data.cart.cartItems);
+          console.log(res);
           setCollection(res.data.cart.cartItems[0]);
         })
-        .catch((err) => console.log(err.message));
+        .catch((err) => console.log("errrrrr", err.message));
     else {
       alert("please login to continue");
     }

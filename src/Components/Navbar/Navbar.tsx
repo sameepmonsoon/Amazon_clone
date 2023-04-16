@@ -18,9 +18,7 @@ const Navbar = (props: {
   const [isOpen, setIsOpen] = useState(false);
   const { currentUser } = useSelector((state: any) => state.user);
   const handleLogin = () => {
-    console.log("object");
-    if (currentUser) {
-      // dispatch(logout());
+    if (currentUser.length !== 0) {
       navigate("/profile");
     } else navigate("/login");
   };

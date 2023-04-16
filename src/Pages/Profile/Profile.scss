@@ -16,8 +16,8 @@
     flex-flow: column;
     border: 1px solid gray;
     height: 50%;
-    width: 30%;
-
+    min-width: 22rem;
+    max-width: 30rem;
     & .profile-amazon-icon {
       width: 100%;
       display: flex;
