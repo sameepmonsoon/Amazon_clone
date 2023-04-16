@@ -5,6 +5,7 @@ import { AiFillAmazonSquare } from "react-icons/all";
 import { renderToString } from "react-dom/server";
 import { Helmet } from "react-helmet";
 import { router } from "./Utils/Paths";
+
 function App() {
   const StyledCartIcon = () => (
     <AiFillAmazonSquare size={35} style={{ color: "white" }} />

@@ -1,6 +1,6 @@
 $navbar-color: #131921;
 $yellow: #ff9900;
-$border-color:#dcdcdc;
+$border-color: #dcdcdc;
 // sreen res--  breakpoints for media query
 $mobile: 600px;
 $small: 48em; // 768px
@@ -9,6 +9,18 @@ $large: 85.375em; // 1366px
 $xlarge: 120em; // 1920px
 $xxlarge: 160em; // 2560px
 
+@mixin spin-animation {
+  animation: spin 800ms infinite linear;
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
 // Media Queries
 // $mq-small: "(min-width: #{$bp-small})";
 // $mq-medium: "(min-width: #{$bp-medium})";
