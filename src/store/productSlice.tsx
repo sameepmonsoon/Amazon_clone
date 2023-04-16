@@ -17,6 +17,12 @@ const products = createSlice({
     setStatus(state, action) {
       state.status = action.payload;
     },
+    searchProduct(state, action) {
+      const searchTerm = action.payload;
+      state.data = state.data.filter((product: any) =>
+        product.name.includes(searchTerm)
+      );
+    },
   },
 });
 
