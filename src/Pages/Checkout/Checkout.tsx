@@ -20,7 +20,7 @@ import { HTTPMethods } from "../../Utils/HTTPMethods";
 const Checkout = (props: { checkoutAds?: React.ReactNode }) => {
   const { checkoutAds } = props;
   const dispatch = useDispatch();
-
+  const { currentUser } = useSelector((state: any) => state.user);
   const cartItems = useSelector((state: any) => state.cart);
   const localItemsCart = JSON.parse(Cookies.get("cartItems") || "[]");
   useEffect(() => {
@@ -39,10 +39,16 @@ const Checkout = (props: { checkoutAds?: React.ReactNode }) => {
     dispatch(decrementCartItem(item));
   }
 
-
-  const handleCart=()=>{
-    HTTPMethods.post("/cart/addCart",cartItems).then((res)=>{console.log(res)}).catch((err)=>console.log(err.message))
-  }
+  const handleCart = () => {
+    if (currentUser)
+      HTTPMethods.post("/cart/addCart", cartItems)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => console.log(err.message));
+    else {
+alert("please login to continue")    }
+  };
   return (
     <HomeLayout
       children={
@@ -96,7 +102,14 @@ const Checkout = (props: { checkoutAds?: React.ReactNode }) => {
               <SubTotalCard
                 totalAmount={getCartTotal(cartItems)}
                 totalItems={cartItems.length}
-                subtotalButton={<button onClick={()=>{handleCart()}}>Add to Collection</button>}
+                subtotalButton={
+                  <button
+                    onClick={() => {
+                      handleCart();
+                    }}>
+                    Add to Collection
+                  </button>
+                }
               />
             </div>
           </div>
