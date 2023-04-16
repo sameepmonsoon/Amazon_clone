@@ -28,7 +28,10 @@ const userSlice = createSlice({
     logout(state: any) {
       localStorage.removeItem("currentUser");
       Cookies.remove("userToken");
-      return initialState;
+      return {
+        ...initialState,
+        currentUser: [],
+      };
     },
   },
   extraReducers: (builder) => {

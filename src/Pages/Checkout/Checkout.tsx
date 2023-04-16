@@ -22,6 +22,7 @@ const Checkout = (props: { checkoutAds?: React.ReactNode }) => {
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state: any) => state.user);
   const cartItems = useSelector((state: any) => state.cart);
+  console.log(cartItems);
   const localItemsCart = JSON.parse(Cookies.get("cartItems") || "[]");
   useEffect(() => {
     if (localItemsCart.length === 0) {
@@ -41,7 +42,7 @@ const Checkout = (props: { checkoutAds?: React.ReactNode }) => {
 
   const handleCart = () => {
     if (currentUser)
-      HTTPMethods.post(`/cart/${currentUser._id}/cart`, cartItems)
+      HTTPMethods.post(`/cart/${currentUser._id}/addCart`, cartItems)
         .then((res) => {
           console.log(res);
         })

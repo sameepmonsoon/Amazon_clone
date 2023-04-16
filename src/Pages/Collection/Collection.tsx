@@ -19,27 +19,25 @@ import axios from "axios";
 import { HTTPMethods } from "../../Utils/HTTPMethods";
 const Collection = (props: { checkoutAds?: React.ReactNode }) => {
   const { checkoutAds } = props;
-  const [collection, setCollection] = useState([]);
+  const [collection, setCollection] = useState<any>([]);
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state: any) => state.user);
   const cartItems = useSelector((state: any) => state.cart);
   const localItemsCart = JSON.parse(Cookies.get("cartItems") || "[]");
-  console.log(currentUser._id);
+  console.log(collection);
   const currentUserLocal =
     JSON.parse(localStorage.getItem("currentUser") || "[]") || null;
-  console.log("locals", currentUserLocal._id);
   useEffect(() => {
     if (localItemsCart.length === 0) {
       Cookies.set("cartItems", JSON.stringify(cartItems), { expires: 1 });
     }
 
     if (currentUser.length !== 0)
-      HTTPMethods.get(`/cart/${currentUserLocal._id}/cart`)
+      HTTPMethods.get(`/cart/${currentUserLocal._id}/getCart`)
         .then((res) => {
-          console.log(res);
-          setCollection(res.data.cart.cartItems[0]);
+          setCollection(res.data[0]);
         })
-        .catch((err) => console.log("errrrrr", err.message));
+        .catch((err) => console.log("Message:", err.message));
     else {
       alert("please login to continue");
     }
@@ -60,6 +58,7 @@ const Collection = (props: { checkoutAds?: React.ReactNode }) => {
       HTTPMethods.post(`/cart/${currentUser._id}/cart`, cartItems)
         .then((res) => {
           console.log(res);
+          setCollection(res.data.cart?.cartItems[0]);
         })
         .catch((err) => console.log(err.message));
     else {
@@ -117,9 +116,14 @@ const Collection = (props: { checkoutAds?: React.ReactNode }) => {
             </div>
             <div className="checkout-subtotal">
               <SubTotalCard
-                totalAmount={getCartTotal(cartItems)}
-                totalItems={cartItems.length}
-                subtotalButton={<></>}
+                subtotalButton={
+                  <button
+                    onClick={() => {
+                      dispatch(addToCart(collection));
+                    }}>
+                    Continue
+                  </button>
+                }
               />
             </div>
           </div>
