@@ -20,34 +20,38 @@ const Payment = () => {
   const [disabled, setDisabled] = useState();
   const [succeeded, setSucceeded] = useState(false);
   const [processing, setProcessing] = useState(false);
+  const [clientSecret, setClientSecret] = useState("");
   const [error, setError] = useState();
   const stripe = useStripe();
   const elements = useElements();
-
+  console.log(clientSecret);
   useEffect(() => {
     const getClient = async () => {
-      const response = await HTTPMethods.post(
-        `/payment/create`,
-        getCartTotal(cartItems)
-      );
+      const response = await HTTPMethods.post(`/payment/create`, {
+        amount: Math.floor(getCartTotal(cartItems)),
+      }).then((res) => {
+        setClientSecret(res.data.clientSecret);
+      });
     };
     getClient();
   }, []);
   const handleSubmit = async (e: any) => {
-    e.prevenDefault();
+    e.preventDefault();
     setProcessing(true);
     const payload = await stripe
-      ?.confirmCardPayment(getCartTotal(cartItems), {
-        payment_method: {
-          // @ts-ignore
-          card: elements.getElement(CardElement),
-        },
+      ?.confirmCardPayment(clientSecret, {
+        // @ts-ignore
+        payment_method: { card: elements?.getElement(CardElement) },
       })
-      .then(({ paymentIntent }) => {
+      .then((res) => {
         setSucceeded(true);
         // @ts-ignore
         setError(null);
         setProcessing(false);
+        navigate("/");
+      })
+      .catch((err) => {
+        console.warn(err);
       });
   };
   const handleChange = (e: any) => {
@@ -67,6 +71,7 @@ const Payment = () => {
                   type="email"
                   name="email"
                   value={currentUser.email}
+                  onChange={() => {}}
                 />
               </span>
 
@@ -84,16 +89,20 @@ const Payment = () => {
           <div className="payment-address">
             <h3>payment method</h3>
             <form className="address-form" onSubmit={handleSubmit}>
-              <span>
+              <div className="card">
+                card details <br />
                 <CardElement onChange={handleChange} />
-              </span>
+              </div>
               <span>
                 <SubTotalCard
                   totalAmount={getCartTotal(cartItems)}
                   totalItems={cartItems.length}
                   subtotalCheckoutButton={
                     <button
-                      onClick={() => {}}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleSubmit(e);
+                      }}
                       disabled={processing || disabled || succeeded}>
                       {processing ? (
                         <ImSpinner3
