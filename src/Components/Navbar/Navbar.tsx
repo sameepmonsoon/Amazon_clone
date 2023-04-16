@@ -70,12 +70,13 @@ const Navbar = (props: {
                 }}>
                 <button>Sign in</button>
                 <span>
-                  New customer? <a href="/login">Start here</a>
+                  New customer? <a href="/signup">Start here</a>
                 </span>
               </p>
               <div className="navbar-user-menu-div">
                 <div className="navbar-user-details">
                   <ul>
+                    <li className="navbar-user-menu-item">Collection</li>
                     <li className="navbar-user-menu-item">Orders</li>
                     <li className="navbar-user-menu-item">Account</li>
                   </ul>
