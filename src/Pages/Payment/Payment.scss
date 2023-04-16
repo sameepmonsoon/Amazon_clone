@@ -54,5 +54,10 @@
       left: 2%;
       color: black;
     }
+    button {
+      svg {
+        @include spin-animation;
+      }
+    }
   }
 }
