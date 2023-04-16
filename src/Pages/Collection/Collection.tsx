@@ -24,12 +24,11 @@ const Collection = (props: { checkoutAds?: React.ReactNode }) => {
   const { currentUser } = useSelector((state: any) => state.user);
   const cartItems = useSelector((state: any) => state.cart);
   const localItemsCart = JSON.parse(Cookies.get("cartItems") || "[]");
-  console.log(collection);
   const currentUserLocal =
     JSON.parse(localStorage.getItem("currentUser") || "[]") || null;
   useEffect(() => {
     if (localItemsCart.length === 0) {
-      Cookies.set("cartItems", JSON.stringify(cartItems), { expires: 1 });
+      Cookies.set("cartItems", JSON.stringify(collection), { expires: 1 });
     }
 
     if (currentUser.length !== 0)
@@ -53,17 +52,13 @@ const Collection = (props: { checkoutAds?: React.ReactNode }) => {
     dispatch(decrementCartItem(item));
   }
 
-  const handleCart = () => {
-    if (currentUser)
-      HTTPMethods.post(`/cart/${currentUser._id}/cart`, cartItems)
-        .then((res) => {
-          console.log(res);
-          setCollection(res.data.cart?.cartItems[0]);
-        })
-        .catch((err) => console.log(err.message));
-    else {
-      alert("please login to continue");
-    }
+  const handleCookie = () => {
+    collection.forEach((item: any) => {
+      dispatch(addToCart(item));
+    }); // update the cart with new collection items
+    Cookies.set("cartItems", JSON.stringify(collection), {
+      expires: 1,
+    });
   };
   return (
     <HomeLayout
@@ -116,10 +111,11 @@ const Collection = (props: { checkoutAds?: React.ReactNode }) => {
             </div>
             <div className="checkout-subtotal">
               <SubTotalCard
+                subtotalCheckoutButton={<button>Proceed To pyament</button>}
                 subtotalButton={
                   <button
                     onClick={() => {
-                      dispatch(addToCart(collection));
+                      handleCookie();
                     }}>
                     Continue
                   </button>

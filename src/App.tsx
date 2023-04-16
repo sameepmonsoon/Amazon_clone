@@ -1,18 +1,11 @@
-import { useState } from "react";
-import Home from "./Pages/Home/Home";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Checkout from "./Pages/Checkout/Checkout";
+import { RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 import { AiFillAmazonSquare } from "react-icons/all";
 import { renderToString } from "react-dom/server";
 import { Helmet } from "react-helmet";
-import LoginSignup from "./Pages/LoginSignup/LoginSignup";
-import PageNotFound from "./Pages/PageNotFound/PageNotFound";
-import Profile from "./Pages/Profile/Profile";
-import Collection from "./Pages/Collection/Collection";
+import { router } from "./Utils/Paths";
 function App() {
-  const [count, setCount] = useState(0);
   const StyledCartIcon = () => (
     <AiFillAmazonSquare size={35} style={{ color: "white" }} />
   );
@@ -21,24 +14,6 @@ function App() {
   const cartIconString = renderToString(<StyledCartIcon />);
   const cartIconBase64 = btoa(cartIconString);
 
-  const router: any = createBrowserRouter([
-    {
-      path: "*",
-      element: <PageNotFound />,
-    },
-    {
-      path: "/",
-      element: <Home />,
-    },
-    {
-      path: "/checkout",
-      element: <Checkout />,
-    },
-    { path: "/login", element: <LoginSignup /> },
-    { path: "/signup", element: <LoginSignup /> },
-    { path: "/profile", element: <Profile /> },
-    { path: "/collection", element: <Collection /> },
-  ]);
   return (
     <>
       <Helmet>
