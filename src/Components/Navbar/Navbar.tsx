@@ -46,7 +46,7 @@ const Navbar = (props: {
           onMouseOver={() => {
             setIsOpen(true);
           }}
-          onMouseLeave={() => {
+          onClick={() => {
             setTimeout(() => {
               setIsOpen(false);
             }, 400);
@@ -76,7 +76,11 @@ const Navbar = (props: {
               <div className="navbar-user-menu-div">
                 <div className="navbar-user-details">
                   <ul>
-                    <li className="navbar-user-menu-item">Collection</li>
+                    <li
+                      className="navbar-user-menu-item"
+                      onClick={() => navigate("/collection")}>
+                      Collection
+                    </li>
                     <li className="navbar-user-menu-item">Orders</li>
                     <li className="navbar-user-menu-item">Account</li>
                   </ul>

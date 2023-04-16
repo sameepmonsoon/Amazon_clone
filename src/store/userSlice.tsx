@@ -21,7 +21,7 @@ const userSlice = createSlice({
       (state.isLoading = true), (state.error = true);
     },
     logout(state: any) {
-      Cookies.remove("userToken");
+      Cookies.remove("cartItems");
       return initialState;
     },
   },
