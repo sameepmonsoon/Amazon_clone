@@ -9,6 +9,7 @@ import Payment from "../Pages/Payment/Payment";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import Orders from "../Pages/Orders/Orders";
+import SearchPage from "../Pages/Search/SearchPage";
 const promise = loadStripe(
   "pk_test_51MxbTVC3OOoE618T2D6VD2A8zXPOSXZxMEeDQnxJ4X3drQoiMrx2cZur9X4dkaYVFxcSGdpLPpO4CMEfEoHetR3w00FSHz2dwp"
 );
@@ -30,6 +31,7 @@ export const router: any = createBrowserRouter([
   { path: "/profile", element: <Profile /> },
   { path: "/collection", element: <Collection /> },
   { path: "/orders", element: <Orders /> },
+  { path: "/search/:id", element: <SearchPage /> },
   {
     path: "/payment",
     element: (

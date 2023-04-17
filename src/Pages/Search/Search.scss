@@ -1,0 +1,10 @@
+@import "../../scss/Variables.scss";
+.search-page {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  align-items: center;
+  gap: 10px;
+  flex-flow: row wrap;
+}

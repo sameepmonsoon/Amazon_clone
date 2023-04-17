@@ -41,6 +41,9 @@ const Navbar = (props: {
 
   const handleSubmit = (value: any) => {
     searchFilter(value);
+    if (value.toLowerCase() === "all") {
+      navigate("/");
+    } else navigate(`/search/${value}`);
   };
   return (
     <div className="navbar">
@@ -57,9 +60,9 @@ const Navbar = (props: {
           value={category}
           onChange={(e: any) => {
             setCategory(e.target.value);
-            searchFilter(e.target.value);
+            handleSubmit(e.target.value);
           }}>
-          <option value="">All</option>
+          <option value="all">All</option>
           <option value="men">Men's</option>
           <option value="women">Women's</option>
           <option value="electronics">Electronics</option>{" "}

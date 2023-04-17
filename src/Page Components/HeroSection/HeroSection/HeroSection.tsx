@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import "./HeroSection.scss";
+import "../HeroSection/HeroSection.scss";
 import Card from "../../../Components/Cards/ProductCard/Card";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../../store/cartSlice";
@@ -26,13 +26,17 @@ const HeroSection = () => {
     // @ts-ignore
     dispatch(fetchProducts());
   }, []);
-  const [loading, setLoading] = useState(true);
+
+  //state for display
+  const [display, setDisplay] = useState(false);
+
   useEffect(() => {
     const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1000);
+      setDisplay(true);
+    }, 3000);
     return () => clearTimeout(timer);
   }, []);
+
   return (
     <UserOrder.Consumer>
       {(value: any) => (
@@ -44,6 +48,7 @@ const HeroSection = () => {
               alt=""
             />
           </div>
+
           <div className="products-dual">
             {products
               .filter((item: any) =>
@@ -51,9 +56,7 @@ const HeroSection = () => {
               )
               .slice(10, 12)
               .map((item: any, index: number) => {
-                return loading ? (
-                  <SkeletonLoading />
-                ) : (
+                return (
                   <Card
                     id={item.id}
                     image={item.image}
@@ -76,13 +79,13 @@ const HeroSection = () => {
           </div>
           <div className="products">
             {products
-              .filter((item: any) =>
-                item.category.toLowerCase().startsWith(search)
+              .filter(
+                (item: any) =>
+                  item.category.toLowerCase().startsWith(search) ||
+                  item.category.toLowerCase().includes(search)
               )
               .map((item: any, index: number) => {
-                return loading ? (
-                  <SkeletonLoading />
-                ) : (
+                return (
                   <div key={index}>
                     <Card
                       id={item.id}
