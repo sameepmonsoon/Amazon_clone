@@ -34,13 +34,20 @@ const userSlice = createSlice({
       };
     },
   },
-  extraReducers: (builder) => {
-    builder.addMatcher(
-      (action) => action.type === "user/login/pending",
-      (state) => {
-        state.isLoading = true;
-      }
-    );
+});
+const userOrderSlice = createSlice({
+  name: "userOrder",
+  initialState: {
+    currentUser:
+      JSON.parse(localStorage.getItem("currentUser") || "[]") || null,
+    product: [],
+    emptyCart: false,
+  },
+  reducers: {
+    getOrder: (state, action) => {
+      state.emptyCart = false;
+      state.product = action.payload;
+    },
   },
 });
 
