@@ -3,7 +3,13 @@ import { addToCart } from "./cartSlice";
 import cartReducer from "./cartSlice";
 import productReducer from "./productSlice";
 import userReducer from "./userSlice";
+import orderReducer from "./orderSlice";
 export const store = configureStore({
-  reducer: { cart: cartReducer, product: productReducer, user: userReducer },
+  reducer: {
+    cart: cartReducer,
+    product: productReducer,
+    user: userReducer,
+    order: orderReducer,
+  },
 });
 export type RootState = ReturnType<typeof store.getState>;

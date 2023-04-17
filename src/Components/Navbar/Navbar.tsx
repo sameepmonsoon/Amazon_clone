@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Navbar.scss";
 import { TbSearch } from "react-icons/all";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import Sider from "../Sider/Sider";
-import { ImAmazon, BsCart2 } from "react-icons/all";
 import { logout } from "../../store/userSlice";
+import { HTTPMethods } from "../../Utils/HTTPMethods";
 const Navbar = (props: {
   icon: React.ReactNode;
   cartIcon: React.ReactNode;
@@ -28,6 +27,15 @@ const Navbar = (props: {
       navigate("/");
     }, 3000);
   };
+
+  const getPayment = async () => {
+    const response = await HTTPMethods.get(
+      `/payment/${currentUser._id}/get`
+    ).then((res) => {
+      navigate("/orders");
+    });
+  };
+
   return (
     <div className="navbar">
       <span
@@ -102,7 +110,11 @@ const Navbar = (props: {
             </div>
           )}
         </span>
-        <span className="navbar-option-two">Return Orders</span>
+        <span className="navbar-option-two" onClick={() => getPayment()}>
+          Return &nbsp;
+          <br />
+          <b> & Orders</b>
+        </span>
         <span
           className="navbar-option-three"
           onClick={() => navigate("/checkout")}>

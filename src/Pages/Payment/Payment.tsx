@@ -24,20 +24,28 @@ const Payment = () => {
   const [error, setError] = useState();
   const stripe = useStripe();
   const elements = useElements();
-  console.log(clientSecret);
   useEffect(() => {
     const getClient = async () => {
       const response = await HTTPMethods.post(`/payment/create`, {
         amount: Math.floor(getCartTotal(cartItems)),
+        products: cartItems,
       }).then((res) => {
         setClientSecret(res.data.clientSecret);
       });
     };
     getClient();
   }, []);
+
+  // on submit
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setProcessing(true);
+    await HTTPMethods.post(`/payment/${currentUser._id}/create`, {
+      amount: Math.floor(getCartTotal(cartItems)),
+      products: cartItems,
+    }).then((res) => {
+      setClientSecret(res.data.clientSecret);
+    });
     const payload = await stripe
       ?.confirmCardPayment(clientSecret, {
         // @ts-ignore

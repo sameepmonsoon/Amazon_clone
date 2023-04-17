@@ -5,7 +5,7 @@ const SubTotalCard = (props: {
   totalItems?: number;
   totalAmount?: number | any;
   subtotalButton?: React.ReactNode;
-  subtotalCheckoutButton: React.ReactNode;
+  subtotalCheckoutButton?: React.ReactNode;
   giftCard?: boolean;
 }) => {
   const {
