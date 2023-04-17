@@ -11,20 +11,20 @@ interface HomeLayoutTypes {
 }
 const HomeLayout = (props: HomeLayoutTypes) => {
   const { children } = props;
- 
+  const [search, setSearch] = useState("");
   const cartItems = useSelector((state: any) => state.cart);
   // const cartItemLocal = JSON.parse(localStorage.getItem("cartItems") || "[]");
   const { currentUser } = useSelector((state: any) => state.user);
-   return (
+  return (
     <>
       <Navbar
         icon={<AiFillAmazonSquare size={45} />}
         cartIcon={<BsCart2 size={25} />}
         cartItems={cartItems.length}
         currentUserName={currentUser?.username}
-      
+        searchFilter={setSearch}
       />
-      <div>{children}</div>
+      <UserOrder.Provider value={{ search }}>{children}</UserOrder.Provider>
       <Footer />
     </>
   );

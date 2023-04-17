@@ -10,8 +10,11 @@ const Navbar = (props: {
   cartIcon: React.ReactNode;
   cartItems: number;
   currentUserName: string;
+  searchFilter: React.Dispatch<React.SetStateAction<any>>;
 }) => {
-  const { icon, cartIcon, cartItems, currentUserName } = props;
+  const { icon, cartIcon, cartItems, currentUserName, searchFilter } = props;
+  const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("All");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
@@ -36,6 +39,9 @@ const Navbar = (props: {
     });
   };
 
+  const handleSubmit = (value: any) => {
+    searchFilter(value);
+  };
   return (
     <div className="navbar">
       <span
@@ -45,13 +51,44 @@ const Navbar = (props: {
         }}>
         {icon}
       </span>
-      <span className="navbar-search">
-        <span className="navbar-search-filter">All</span>
-        <input type="text" placeholder="Search Amazon" />
-        <span className="search-icon">
+      <form className="navbar-search" onSubmit={handleSubmit}>
+        <select
+          className="navbar-search-filter"
+          value={category}
+          onChange={(e: any) => {
+            setCategory(e.target.value);
+            searchFilter(e.target.value);
+          }}>
+          <option value="" selected>
+            All
+          </option>
+          <option value="men">Men's</option>
+          <option value="women">Women's</option>
+          <option value="electronics">Electronics</option>{" "}
+          <option value="jewelery">Jewelery</option>
+        </select>
+        {/* search bar */}
+        <input
+          type="text"
+          placeholder="Search Amazon"
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            setSearch(e.target.value);
+            console.log(e.target.value);
+            if (!e.target.value.trim()) searchFilter("");
+          }}
+          value={search}
+          maxLength={15}
+        />
+        <button
+          className="search-icon"
+          type="submit"
+          onClick={(e: any) => {
+            e.preventDefault();
+            handleSubmit(search);
+          }}>
           <TbSearch size={25} />
-        </span>
-      </span>
+        </button>
+      </form>
       <div className="navbar-options">
         <span
           className="navbar-option-one"
