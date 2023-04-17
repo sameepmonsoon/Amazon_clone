@@ -50,7 +50,7 @@
     }
     .svg {
       position: absolute;
-      top: 50%;
+      top: 57%;
       left: 2%;
       color: black;
     }
@@ -68,4 +68,10 @@
   height: 50%;
   border: 1px solid gray;
   padding: 10px;
+}
+.form-error::placeholder {
+  color: red;
+}
+.form-placeholder {
+  color: inherit;
 }

@@ -6,6 +6,7 @@ import { addToCart } from "../../../store/cartSlice";
 import { fetchProducts } from "../../../store/productSlice";
 import Cookies from "js-cookie";
 import { UserOrder } from "../../../Layout/HomeLayout";
+import SkeletonLoading from "../../../Components/Skeleton Loading/SkeletonLoading";
 
 const HeroSection = () => {
   const dispatch = useDispatch();
@@ -25,6 +26,13 @@ const HeroSection = () => {
     // @ts-ignore
     dispatch(fetchProducts());
   }, []);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
   return (
     <UserOrder.Consumer>
       {(value: any) => (
@@ -37,29 +45,34 @@ const HeroSection = () => {
             />
           </div>
           <div className="products-dual">
-            {products.filter((item: any) =>
+            {products
+              .filter((item: any) =>
                 item.category.toLowerCase().startsWith(search)
-              ).slice(10, 12).map((item: any, index: number) => {
-              return (
-                <Card
-                  id={item.id}
-                  image={item.image}
-                  category={item.category}
-                  description={item.description}
-                  button={
-                    <button
-                      onClick={() => {
-                        addToBasket({ ...item, quantity: 1 });
-                      }}>
-                      Add to cart
-                    </button>
-                  }
-                  ratings={item.rating.rate}
-                  price={item.price}
-                  key={index}
-                />
-              );
-            })}
+              )
+              .slice(10, 12)
+              .map((item: any, index: number) => {
+                return loading ? (
+                  <SkeletonLoading />
+                ) : (
+                  <Card
+                    id={item.id}
+                    image={item.image}
+                    category={item.category}
+                    description={item.description}
+                    button={
+                      <button
+                        onClick={() => {
+                          addToBasket({ ...item, quantity: 1 });
+                        }}>
+                        Add to cart
+                      </button>
+                    }
+                    ratings={item.rating.rate}
+                    price={item.price}
+                    key={index}
+                  />
+                );
+              })}
           </div>
           <div className="products">
             {products
@@ -67,7 +80,9 @@ const HeroSection = () => {
                 item.category.toLowerCase().startsWith(search)
               )
               .map((item: any, index: number) => {
-                return (
+                return loading ? (
+                  <SkeletonLoading />
+                ) : (
                   <div key={index}>
                     <Card
                       id={item.id}

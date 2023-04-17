@@ -11,7 +11,8 @@
   flex-flow: column nowrap;
   justify-content: space-between;
   align-items: center;
-
+  position: relative;
+  bottom: -10px;
   & .footer-copyright {
     height: 40px;
     display: flex;
