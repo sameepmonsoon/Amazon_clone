@@ -43,7 +43,7 @@ const Card = (props: {
   const [loading, setLoading] = useState(true);
   setTimeout(() => {
     setLoading(false);
-  }, 1000);
+  }, 1200);
   if (loading) {
     return <SkeletonLoading anotherSection={anotherSection} />;
   } else
