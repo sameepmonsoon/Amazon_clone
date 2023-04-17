@@ -41,7 +41,7 @@ const Orders = (props: { checkoutAds?: React.ReactNode }) => {
           {(value) => (
             <div className="checkout-container">
               <div className="checkout-ads">{checkoutAds}</div>
-              <h2 className="checkout-header">Your Orders</h2>
+              <h2 className="checkout-header">Your Order History</h2>
               <div className="checkout-product-container">
                 <div className="checkout-product">
                   {collection.products !== undefined &&

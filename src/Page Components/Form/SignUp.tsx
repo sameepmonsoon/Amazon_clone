@@ -80,11 +80,15 @@ const Form = (props: { children: React.ReactNode }) => {
             onChange={formik.handleChange}
             onChange={formik.handleChange}
             placeholder={
-              formik.touched && formik.errors.username
+              formik.touched.username && formik.errors.username
                 ? formik.errors.username
                 : "Username"
             }
-            className={formik.errors.username ? "form-error" : ""}
+            className={
+              formik.touched.username && formik.errors.username
+                ? "form-error"
+                : ""
+            }
           />
 
           <TextField
@@ -94,12 +98,12 @@ const Form = (props: { children: React.ReactNode }) => {
             placeholder=""
             onChange={formik.handleChange}
             placeholder={
-              formik.touched && formik.errors.email
+              formik.touched.email && formik.errors.email
                 ? formik.errors.email
                 : "Email"
             }
             className={
-              formik.touched && formik.errors.email ? "form-error" : ""
+              formik.touched.email && formik.errors.email ? "form-error" : ""
             }
           />
           <TextField
@@ -109,12 +113,14 @@ const Form = (props: { children: React.ReactNode }) => {
             maxLength={10}
             onChange={formik.handleChange}
             placeholder={
-              formik.touched && formik.errors.password
+              formik.touched.password && formik.errors.password
                 ? formik.errors.password
                 : "At least 5 characters"
             }
             className={
-              formik.touched && formik.errors.password ? "form-error" : ""
+              formik.touched.password && formik.errors.password
+                ? "form-error"
+                : ""
             }
           />
           <TextField
@@ -124,12 +130,12 @@ const Form = (props: { children: React.ReactNode }) => {
             maxLength={10}
             onChange={formik.handleChange}
             placeholder={
-              formik.touched && formik.errors.confirmPassword
+              formik.touched.confirmPassword && formik.errors.confirmPassword
                 ? formik.errors.confirmPassword
                 : ""
             }
             className={
-              formik.touched && formik.errors.confirmPassword
+              formik.touched.confirmPassword && formik.errors.confirmPassword
                 ? "form-error"
                 : ""
             }

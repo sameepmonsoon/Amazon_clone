@@ -67,11 +67,13 @@ const Login = (props: { children: React.ReactNode }) => {
             placeholder="Email"
             onChange={formik.handleChange}
             placeholder={
-              formik.touched && formik.errors.email
+              formik.touched.email && formik.errors.email
                 ? formik.errors.email
                 : "Email"
             }
-            className={formik.errors.email ? "form-error" : ""}
+            className={
+              formik.touched.email && formik.errors.email ? "form-error" : ""
+            }
           />
           <span className="password">
             <TextField
@@ -80,12 +82,12 @@ const Login = (props: { children: React.ReactNode }) => {
               name="password"
               maxLength={10}
               placeholder={
-                formik.touched && formik.errors.password
+                formik.touched.password && formik.errors.password
                   ? formik.errors.password
                   : "Password"
               }
               className={
-                formik.touched && formik.errors.password
+                formik.touched.password && formik.errors.password
                   ? "form-error"
                   : "form-placeholder"
               }

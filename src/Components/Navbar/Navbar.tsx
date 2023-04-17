@@ -59,9 +59,7 @@ const Navbar = (props: {
             setCategory(e.target.value);
             searchFilter(e.target.value);
           }}>
-          <option value="" selected>
-            All
-          </option>
+          <option value="">All</option>
           <option value="men">Men's</option>
           <option value="women">Women's</option>
           <option value="electronics">Electronics</option>{" "}
