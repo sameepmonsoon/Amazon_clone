@@ -22,6 +22,12 @@ const Navbar = (props: {
       navigate("/profile");
     } else navigate("/login");
   };
+  const handleLogout = () => {
+    dispatch(logout());
+    setTimeout(() => {
+      navigate("/");
+    }, 3000);
+  };
   return (
     <div className="navbar">
       <span
@@ -84,9 +90,11 @@ const Navbar = (props: {
                     <li
                       className="navbar-user-menu-item"
                       onClick={() => {
-                        handleLogin();
+                        setTimeout(() => {
+                          handleLogout();
+                        }, 2000);
                       }}>
-                      Account
+                      Logout
                     </li>
                   </ul>
                 </div>
