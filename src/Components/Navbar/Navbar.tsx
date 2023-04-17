@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./Navbar.scss";
-import { TbSearch } from "react-icons/all";
-import { useNavigate } from "react-router-dom";
+import {
+  AiFillCaretDown,
+  BsCaretDownFill,
+  BsCaretUpFill,
+  BsChevronDown,
+  FaSortUp,
+  TbSearch,
+} from "react-icons/all";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/userSlice";
 import { HTTPMethods } from "../../Utils/HTTPMethods";
@@ -15,6 +22,7 @@ const Navbar = (props: {
   const { icon, cartIcon, cartItems, currentUserName, searchFilter } = props;
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All");
+  const [dropdown, setDropDown] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
@@ -30,7 +38,7 @@ const Navbar = (props: {
       navigate("/");
     }, 3000);
   };
-
+  const { id } = useParams();
   const getPayment = async () => {
     const response = await HTTPMethods.get(
       `/payment/${currentUser._id}/get`
@@ -41,7 +49,13 @@ const Navbar = (props: {
 
   const handleSubmit = (value: any) => {
     searchFilter(value);
-    if (value.toLowerCase() === "all") {
+    if (!value.trim()) {
+      if (id) {
+        navigate(`/search/${id}`);
+      } else {
+        navigate("/");
+      }
+    } else if (value.toLowerCase() === "all") {
       navigate("/");
     } else navigate(`/search/${value}`);
   };
@@ -55,29 +69,36 @@ const Navbar = (props: {
         {icon}
       </span>
       <form className="navbar-search" onSubmit={handleSubmit}>
-        <select
-          className="navbar-search-filter"
-          value={category}
-          onChange={(e: any) => {
-            setCategory(e.target.value);
-            handleSubmit(e.target.value);
-          }}>
-          <option value="all">All</option>
-          <option value="men">Men's</option>
-          <option value="women">Women's</option>
-          <option value="electronics">Electronics</option>{" "}
-          <option value="jewelery">Jewelery</option>
-        </select>
+        <div className="navbar-search-filter">
+          <select
+            id="select"
+            value={category}
+            onClick={() => {
+              setDropDown(!dropdown);
+            }}
+            onChange={(e: any) => {
+              setCategory(e.target.value);
+              handleSubmit(e.target.value);
+            }}>
+            <option value="all">All</option>
+            <option value="men">Men's</option>
+            <option value="women">Women's</option>
+            <option value="electronics">Electronics</option>{" "}
+            <option value="jewelery">Jewelery</option>
+          </select>
+          <span id="custom-arrow" className={dropdown ? "rotate-up" : ""}>
+            <BsCaretUpFill size={18} />
+          </span>
+        </div>
         {/* search bar */}
         <input
           type="text"
           placeholder="Search Amazon"
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             setSearch(e.target.value);
-            console.log(e.target.value);
             if (!e.target.value.trim()) searchFilter("");
           }}
-          value={search}
+          value={search !== undefined && search !== null ? search : id}
           maxLength={15}
         />
         <button

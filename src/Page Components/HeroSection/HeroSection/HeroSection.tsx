@@ -7,6 +7,7 @@ import { fetchProducts } from "../../../store/productSlice";
 import Cookies from "js-cookie";
 import { UserOrder } from "../../../Layout/HomeLayout";
 import SkeletonLoading from "../../../Components/Skeleton Loading/SkeletonLoading";
+import { useLocation } from "react-router-dom";
 
 const HeroSection = () => {
   const dispatch = useDispatch();
@@ -18,24 +19,14 @@ const HeroSection = () => {
   const [cartItems, setCartItems] = useState<any>(
     JSON.parse(Cookies.get("cartItems") || "[]")
   );
-
+  const location = useLocation().pathname;
   useEffect(() => {
     Cookies.set("cartItems", JSON.stringify(cartItems), { expires: 7 });
   }, [cartItems]);
   useEffect(() => {
     // @ts-ignore
     dispatch(fetchProducts());
-  }, []);
-
-  //state for display
-  const [display, setDisplay] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setDisplay(true);
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, []);
+  }, [location]);
 
   return (
     <UserOrder.Consumer>

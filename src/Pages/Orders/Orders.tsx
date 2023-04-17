@@ -28,7 +28,6 @@ const Orders = (props: { checkoutAds?: React.ReactNode }) => {
       HTTPMethods.get(`/payment/${currentUser._id}/get`)
         .then((res) => {
           setCollection(res.data);
-          console.log("collection", res.data);
         })
         .catch((err) => {
           console.log(err.message);
