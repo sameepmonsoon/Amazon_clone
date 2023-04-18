@@ -8,6 +8,7 @@ import Cookies from "js-cookie";
 import { UserOrder } from "../../../Layout/HomeLayout";
 import SkeletonLoading from "../../../Components/Skeleton Loading/SkeletonLoading";
 import { useLocation } from "react-router-dom";
+import { HTTPMethods } from "../../../Utils/HTTPMethods";
 
 const HeroSection = () => {
   const dispatch = useDispatch();
@@ -23,9 +24,16 @@ const HeroSection = () => {
   useEffect(() => {
     Cookies.set("cartItems", JSON.stringify(cartItems), { expires: 7 });
   }, [cartItems]);
+  console.log(products);
   useEffect(() => {
     // @ts-ignore
     dispatch(fetchProducts());
+
+    // HTTPMethods.post(`/product/add`, products)
+    //   .then((res) => {})
+    //   .catch((err) => {
+    //     console.log(err.message);
+    //   });
   }, [location]);
 
   return (
