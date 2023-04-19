@@ -4,8 +4,8 @@ import Card from "../../Components/Cards/ProductCard/Card";
 import "../Checkout/Checkout.scss";
 import SubTotalCard from "../../Components/Cards/SubTotalCard/SubTotalCard";
 import { useDispatch, useSelector } from "react-redux";
+import { Slide, toast } from "react-toastify";
 import {
-  getCartTotal,
   removeFromCart,
   incrementCartItem,
   decrementCartItem,
@@ -15,7 +15,6 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { MdAdd } from "react-icons/md";
 import { HiMinusSm } from "react-icons/hi";
 import Cookies from "js-cookie";
-import axios from "axios";
 import { HTTPMethods } from "../../Utils/HTTPMethods";
 const Collection = (props: { checkoutAds?: React.ReactNode }) => {
   const { checkoutAds } = props;
@@ -38,7 +37,20 @@ const Collection = (props: { checkoutAds?: React.ReactNode }) => {
         })
         .catch((err) => console.log("Message:", err.message));
     else {
-      alert("please login to continue");
+      toast.error("Please login to continue", {
+        className: "toast-center",
+        position: "bottom-center",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        closeButton: false,
+        transition: Slide,
+        icon: false,
+      });
     }
   }, [cartItems, location]);
 
@@ -55,6 +67,20 @@ const Collection = (props: { checkoutAds?: React.ReactNode }) => {
   const handleCookie = () => {
     collection.forEach((item: any) => {
       dispatch(addToCart(item));
+      toast.success("Login Successful", {
+        className: "toast-center",
+        position: "bottom-center",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        closeButton: false,
+        transition: Slide,
+        icon: false,
+      });
     }); // update the cart with new collection items
     Cookies.set("cartItems", JSON.stringify(collection), {
       expires: 1,

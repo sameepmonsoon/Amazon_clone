@@ -30,7 +30,7 @@ function App() {
         <meta name="description" content="This is a description" />
       </Helmet>
       <Provider store={store}>
-        <ToastContainer limit={10} />
+        <ToastContainer limit={1} />
         <div className="App">
           <RouterProvider router={router} />
         </div>

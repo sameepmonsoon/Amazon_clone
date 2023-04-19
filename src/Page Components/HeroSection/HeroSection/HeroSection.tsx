@@ -7,9 +7,8 @@ import { fetchRecommendedProduct } from "../../../store/recommendProduct";
 import { fetchProducts } from "../../../store/productSlice";
 import Cookies from "js-cookie";
 import { UserOrder } from "../../../Layout/HomeLayout";
-import SkeletonLoading from "../../../Components/Skeleton Loading/SkeletonLoading";
 import { useLocation } from "react-router-dom";
-import { HTTPMethods } from "../../../Utils/HTTPMethods";
+import { Slide, toast } from "react-toastify";
 
 const HeroSection = () => {
   const dispatch = useDispatch();
@@ -93,6 +92,34 @@ const HeroSection = () => {
                         <button
                           onClick={() => {
                             addToBasket({ ...item, quantity: 1 });
+                            const toastId = "alert";
+                            if (!toast.isActive(toastId)) {
+                              toast("Item added into the cart.", {
+                                toastId: toastId,
+                                className: "toast-center",
+                                position: "bottom-center",
+                                autoClose: 2000,
+                                hideProgressBar: true,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                                theme: "colored",
+                                closeButton: false,
+                                transition: Slide,
+                                icon: false,
+                                style: {
+                                  backgroundColor: "#E7FFF1",
+                                  color: "black",
+                                },
+                              });
+                            } else {
+                              toast.update(toastId, {
+                                render: <div>Please login to continue.</div>,
+
+                                autoClose: 1000,
+                              });
+                            }
                           }}>
                           Add to cart
                         </button>

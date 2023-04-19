@@ -1,5 +1,4 @@
-//@ts-nocheck
-
+import { Slide, toast } from "react-toastify";
 import React, { useState } from "react";
 import "./Form.scss";
 import { useNavigate } from "react-router-dom";
@@ -36,18 +35,49 @@ const Login = (props: { children: React.ReactNode }) => {
       password: "",
     },
     onSubmit: (values, { resetForm }) => {
+      //@ts-ignore
+
       dispatch(login());
       HTTPMethods.post("/auth/signin", values)
         .then((res) => {
           localStorage.setItem("userToken", res.data.token); // save token to local storage
           dispatch(loginSuccess(res.data));
-          navigate("/");
           resetForm();
+          toast.success("Login Successful", {
+            className: "toast-center",
+            position: "bottom-center",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            closeButton: false,
+            transition: Slide,
+            icon: false,
+          });
+          setTimeout(() => {
+            navigate("/");
+          }, 2000);
         })
         .catch((err) => {
-          console.log(err.message);
           resetForm();
           dispatch(loginFailure());
+          toast.error(err.response.data.message, {
+            className: "toast-center",
+            position: "bottom-center",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            closeButton: false,
+            transition: Slide,
+            icon: false,
+          });
         });
     },
     validationSchema: Schema,
@@ -65,12 +95,12 @@ const Login = (props: { children: React.ReactNode }) => {
             type="email"
             name="email"
             placeholder="Email"
-            onChange={formik.handleChange}
+            onChange={formik.handleChange} //@ts-ignore
             placeholder={
               formik.touched.email && formik.errors.email
                 ? formik.errors.email
                 : "Email"
-            }
+            } //@ts-ignore
             className={
               formik.touched.email && formik.errors.email ? "form-error" : ""
             }
@@ -86,6 +116,7 @@ const Login = (props: { children: React.ReactNode }) => {
                   ? formik.errors.password
                   : "Password"
               }
+              //@ts-ignore
               className={
                 formik.touched.password && formik.errors.password
                   ? "form-error"
