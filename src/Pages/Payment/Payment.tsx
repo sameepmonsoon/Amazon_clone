@@ -15,6 +15,8 @@ import { useEffect } from "react";
 import { HTTPMethods } from "../../Utils/HTTPMethods";
 import * as yup from "yup";
 import { useFormik } from "formik";
+import { Slide, toast } from "react-toastify";
+
 const Payment = () => {
   const navigate = useNavigate();
   const cartItems = useSelector((state: any) => state.cart);
@@ -58,7 +60,6 @@ const Payment = () => {
       city: "",
     },
     onSubmit: async (value: any, action: any) => {
-      console.log("delivered", value);
       setProcessing(true);
       await HTTPMethods.post(`/payment/${currentUser._id}/create`, {
         amount: Math.floor(getCartTotal(cartItems)),
@@ -81,6 +82,20 @@ const Payment = () => {
         })
         .catch((err) => {
           console.warn(err);
+          toast.error("Items Added into collection.", {
+            className: "toast-center",
+            position: "bottom-center",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            closeButton: false,
+            transition: Slide,
+            icon: false,
+          });
         });
     },
     validationSchema: Schema,

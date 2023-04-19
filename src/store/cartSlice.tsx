@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
+import { Slide, toast } from "react-toastify";
 
 const CART_COOKIE = "cartItems";
 interface CartState {
@@ -27,10 +28,34 @@ const cartSlicer = createSlice({
       );
 
       if (existingItem) {
-        if (existingItem.quantity < 10) {
-          existingItem.quantity++;
-          existingItem.totalPrice = existingItem.price * existingItem.quantity;
+        // if (existingItem.quantity < 10) {
+        //   existingItem.quantity++;
+        //   existingItem.totalPrice = existingItem.price * existingItem.quantity;
+        const toastId = "alert";
+        if (!toast.isActive(toastId)) {
+          toast.error("Item is already in your cart", {
+            toastId: toastId,
+            className: "toast-center",
+            position: "bottom-center",
+            autoClose: 1000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            closeButton: false,
+            transition: Slide,
+            icon: false,
+            style: { backgroundColor: "#E84A4A", color: "white" },
+          });
+        } else {
+          toast.update(toastId, {
+            render: <div>Item is already in your cart.</div>,
+            autoClose: 1000,
+          });
         }
+        // }
       } else {
         if (state.length < 10) {
           const newItem = {

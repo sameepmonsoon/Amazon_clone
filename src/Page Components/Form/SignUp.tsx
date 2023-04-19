@@ -1,5 +1,4 @@
 //@ts-nocheck
-
 import React, { useState } from "react";
 import "./Form.scss";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +8,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { HTTPMethods } from "../../Utils/HTTPMethods";
 import Cookies from "js-cookie";
+import { Slide, toast } from "react-toastify";
 
 const Form = (props: { children: React.ReactNode }) => {
   const { children } = props;
@@ -42,12 +42,41 @@ const Form = (props: { children: React.ReactNode }) => {
         ? HTTPMethods.post("/auth/signup", values)
             .then((res: any) => {
               Cookies.set("token", res.data.token);
-              console.log(res);
               action.resetForm();
+              toast.success(" You've successfully signed up.", {
+                className: "toast-center",
+                position: "bottom-center",
+                autoClose: 2000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                closeButton: false,
+                transition: Slide,
+                icon: false,
+              });
+              setTimeout(() => {
+                navigate("/login");
+              }, 2000);
             })
             .catch((err) => {
-              console.log(err.message);
               action.resetForm();
+              toast.error(err.response.data.message, {
+                className: "toast-center",
+                position: "bottom-center",
+                autoClose: 2000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                closeButton: false,
+                transition: Slide,
+                icon: false,
+              });
             })
         : HTTPMethods.post("/auth/signin", values)
             .then((res) => {
