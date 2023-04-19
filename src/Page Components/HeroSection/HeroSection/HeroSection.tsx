@@ -3,6 +3,7 @@ import "../HeroSection/HeroSection.scss";
 import Card from "../../../Components/Cards/ProductCard/Card";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../../store/cartSlice";
+import { fetchRecommendedProduct } from "../../../store/recommendProduct";
 import { fetchProducts } from "../../../store/productSlice";
 import Cookies from "js-cookie";
 import { UserOrder } from "../../../Layout/HomeLayout";
@@ -13,6 +14,8 @@ import { HTTPMethods } from "../../../Utils/HTTPMethods";
 const HeroSection = () => {
   const dispatch = useDispatch();
   const { data: products, status } = useSelector((state: any) => state.product);
+  const { data: recommend } = useSelector((state: any) => state.recommend);
+  console.log("inside the reducer", recommend);
   function addToBasket(value: any) {
     dispatch(addToCart(value));
   }
@@ -27,14 +30,8 @@ const HeroSection = () => {
   useEffect(() => {
     // @ts-ignore
     dispatch(fetchProducts());
-
-    HTTPMethods.get(`/recommendedproduct/get`)
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
+    // @ts-ignore
+    dispatch(fetchRecommendedProduct());
   }, [location]);
 
   return (

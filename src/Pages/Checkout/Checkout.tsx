@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import HomeLayout from "../../Layout/HomeLayout";
 import Card from "../../Components/Cards/ProductCard/Card";
 import "./Checkout.scss";
+import { Slide, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import SubTotalCard from "../../Components/Cards/SubTotalCard/SubTotalCard";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -41,14 +43,46 @@ const Checkout = (props: { checkoutAds?: React.ReactNode }) => {
   function decrementCart(item: any) {
     dispatch(decrementCartItem(item));
   }
-
+  const customStyle = {
+    top: "50%",
+  };
   const handleCart = () => {
     if (currentUser)
       HTTPMethods.post(`/cart/${currentUser._id}/addCart`, cartItems)
         .then((res) => {
           console.log(res);
+          toast("Items Added into collection.", {
+            className: "toast-center",
+            position: "bottom-center",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            closeButton: false,
+            transition: Slide,
+            icon: false,
+          });
         })
-        .catch((err) => console.log(err.message));
+        .catch((err) => {
+          console.log(err.message);
+          toast.error("Items Added into collection.", {
+            className: "toast-center",
+            position: "bottom-center",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            closeButton: false,
+            transition: Slide,
+            icon: false,
+          });
+        });
     else {
       alert("please login to continue");
     }
@@ -117,7 +151,7 @@ const Checkout = (props: { checkoutAds?: React.ReactNode }) => {
                 subtotalCheckoutButton={
                   <button
                     onClick={() => {
-                      navigate("/payment")
+                      navigate("/payment");
                     }}>
                     Proceed To pyament
                   </button>

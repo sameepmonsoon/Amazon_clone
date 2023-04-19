@@ -6,6 +6,9 @@ import { renderToString } from "react-dom/server";
 import { Helmet } from "react-helmet";
 import { router } from "./Utils/Paths";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function App() {
   const StyledCartIcon = () => (
     <AiFillAmazonSquare size={35} style={{ color: "white" }} />
@@ -27,6 +30,7 @@ function App() {
         <meta name="description" content="This is a description" />
       </Helmet>
       <Provider store={store}>
+        <ToastContainer limit={10} />
         <div className="App">
           <RouterProvider router={router} />
         </div>
