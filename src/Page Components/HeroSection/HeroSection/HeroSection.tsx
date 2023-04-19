@@ -24,16 +24,17 @@ const HeroSection = () => {
   useEffect(() => {
     Cookies.set("cartItems", JSON.stringify(cartItems), { expires: 7 });
   }, [cartItems]);
-  console.log(products);
   useEffect(() => {
     // @ts-ignore
     dispatch(fetchProducts());
 
-    // HTTPMethods.post(`/product/add`, products)
-    //   .then((res) => {})
-    //   .catch((err) => {
-    //     console.log(err.message);
-    //   });
+    HTTPMethods.get(`/recommendedproduct/get`)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   }, [location]);
 
   return (
