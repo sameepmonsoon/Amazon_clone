@@ -37,6 +37,7 @@ const Profile = () => {
                 Logout
               </button>
             </div>
+            <div style={{ backgroundColor: "red" }}></div>
           </div>
         }
       />
