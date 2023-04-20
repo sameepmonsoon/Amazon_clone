@@ -1,0 +1,18 @@
+.slider {
+  display: flex;
+  position: absolute;
+  flex-flow: row nowrap;
+  height: 100%;
+  width: 100%;
+  background-color: red;
+  overflow: hidden;
+  padding: 20px;
+  justify-content: start;
+  align-items: start;
+  gap: 20px;
+}
+.slider-content {
+  height: 10%;
+  background-color: yellow;
+  width: 80%;
+}
