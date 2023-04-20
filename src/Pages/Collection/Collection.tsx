@@ -37,20 +37,35 @@ const Collection = (props: { checkoutAds?: React.ReactNode }) => {
         })
         .catch((err) => console.log("Message:", err.message));
     else {
-      toast.error("Please login to continue", {
-        className: "toast-center",
-        position: "bottom-center",
-        autoClose: 2000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-        closeButton: false,
-        transition: Slide,
-        icon: false,
-      });
+      const toastId = "alert";
+      const existingToast = toast.isActive(toastId);
+
+      if (existingToast) {
+        toast.update(toastId, {
+          render: "Please login to continue.",
+          autoClose: 1000,
+        });
+      } else {
+        toast.error("Please login to continue.", {
+          toastId: toastId,
+          className: "toast-center",
+          position: "bottom-center",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          closeButton: false,
+          transition: Slide,
+          icon: false,
+          style: {
+            backgroundColor: " #FAE8E9",
+            color: "#E84A4A",
+          },
+        });
+      }
     }
   }, [cartItems, location]);
 

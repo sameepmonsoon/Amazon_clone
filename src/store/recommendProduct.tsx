@@ -37,7 +37,6 @@ export function fetchRecommendedProduct() {
     try {
       await HTTPMethods.get(`/recommendedproduct/get`)
         .then((res) => {
-          console.log(res.data);
           dispatch(fetchDataSuccess(res.data));
         })
         .catch((err) => {

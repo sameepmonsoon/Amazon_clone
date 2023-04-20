@@ -153,7 +153,6 @@ const Navbar = (props: {
                       Collection
                     </li>
 
-                    <li className="navbar-user-menu-item">Orders</li>
                     <li
                       className="navbar-user-menu-item"
                       onClick={() => {

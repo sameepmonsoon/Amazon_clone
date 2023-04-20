@@ -13,7 +13,6 @@ const HomeLayout = (props: HomeLayoutTypes) => {
   const { children } = props;
   const [search, setSearch] = useState("");
   const cartItems = useSelector((state: any) => state.cart);
-  // const cartItemLocal = JSON.parse(localStorage.getItem("cartItems") || "[]");
   const { currentUser } = useSelector((state: any) => state.user);
   return (
     <>

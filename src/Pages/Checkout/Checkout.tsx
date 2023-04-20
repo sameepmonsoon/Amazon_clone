@@ -68,29 +68,51 @@ const Checkout = (props: { checkoutAds?: React.ReactNode }) => {
         })
         .catch((err) => {
           console.log(err.message);
-          toast.error("Items Added into collection.", {
-            className: "toast-center",
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-            closeButton: false,
-            transition: Slide,
-            icon: false,
-          });
+          const toastId = "alert";
+          const existingToast = toast.isActive(toastId);
+
+          if (existingToast) {
+            toast.update(toastId, {
+              render: "Item Removed Successfully.",
+              autoClose: 1000,
+            });
+          } else {
+            toast.error("Your cart is full .Cannot add more item.", {
+              toastId: toastId,
+              className: "toast-center",
+              position: "bottom-center",
+              autoClose: 1000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+              closeButton: false,
+              transition: Slide,
+              icon: false,
+              style: {
+                backgroundColor: " #FAE8E9",
+                color: "#E84A4A",
+              },
+            });
+          }
         });
     else {
       const toastId = "alert";
-      if (!toast.isActive(toastId)) {
+      const existingToast = toast.isActive(toastId);
+
+      if (existingToast) {
+        toast.update(toastId, {
+          render: "Please login to continue.",
+          autoClose: 1000,
+        });
+      } else {
         toast.error("Please login to continue.", {
           toastId: toastId,
           className: "toast-center",
           position: "bottom-center",
-          autoClose: 2000,
+          autoClose: 1000,
           hideProgressBar: true,
           closeOnClick: true,
           pauseOnHover: true,
@@ -100,15 +122,12 @@ const Checkout = (props: { checkoutAds?: React.ReactNode }) => {
           closeButton: false,
           transition: Slide,
           icon: false,
-          style: { color: "white" },
+          style: {
+            backgroundColor: " #FAE8E9",
+            color: "#E84A4A",
+          },
         });
-      } else {
-        toast.update(toastId, {
-          render: <div>Please login to continue.</div>,
-
-          autoClose: 1000,
-        });
-      }
+      } 
     }
   };
 
@@ -116,8 +135,15 @@ const Checkout = (props: { checkoutAds?: React.ReactNode }) => {
     if (currentUser.length !== 0) {
       navigate("/payment");
     } else {
-      const toastId = "login-toast";
-      if (!toast.isActive(toastId)) {
+      const toastId = "alert";
+      const existingToast = toast.isActive(toastId);
+
+      if (existingToast) {
+        toast.update(toastId, {
+          render: "Please login to continue.",
+          autoClose: 1000,
+        });
+      } else {
         toast.error("Please login to continue.", {
           toastId: toastId,
           className: "toast-center",
@@ -132,12 +158,10 @@ const Checkout = (props: { checkoutAds?: React.ReactNode }) => {
           closeButton: false,
           transition: Slide,
           icon: false,
-          style: { color: "white" },
-        });
-      } else {
-        toast.update(toastId, {
-          render: <div>Please login to continue.</div>,
-          autoClose: 1000,
+          style: {
+            backgroundColor: " #FAE8E9",
+            color: "#E84A4A",
+          },
         });
       }
     }
