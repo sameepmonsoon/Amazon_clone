@@ -24,6 +24,15 @@
   gap: 10px;
   flex-flow: row wrap;
 }
+.products-recommend {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  align-items: center;
+  gap: 50px;
+  margin-top: 20px;
+  flex-flow: column wrap;
+}
 
 .products-dual {
   display: flex;
@@ -34,3 +43,6 @@
   align-items: center;
   gap: 10px;
 }
+
+
+
