@@ -91,34 +91,61 @@ const HeroSection = () => {
                       button={
                         <button
                           onClick={() => {
-                            addToBasket({ ...item, quantity: 1 });
-                            const toastId = "alert";
-                            if (!toast.isActive(toastId)) {
-                              toast("Item added into the cart.", {
-                                toastId: toastId,
-                                className: "toast-center",
-                                position: "bottom-center",
-                                autoClose: 2000,
-                                hideProgressBar: true,
-                                closeOnClick: true,
-                                pauseOnHover: true,
-                                draggable: true,
-                                progress: undefined,
-                                theme: "colored",
-                                closeButton: false,
-                                transition: Slide,
-                                icon: false,
-                                style: {
-                                  backgroundColor: "#E7FFF1",
-                                  color: "black",
-                                },
-                              });
-                            } else {
-                              toast.update(toastId, {
-                                render: <div>Please login to continue.</div>,
+                            if (cartItems.length <= 9) {
+                              addToBasket({ ...item, quantity: 1 });
 
-                                autoClose: 1000,
-                              });
+                              const toastId = "toast";
+                              if (!toast.isActive(toastId)) {
+                                toast("Item added into the cart.", {
+                                  toastId: toastId,
+                                  className: "toast-center",
+                                  position: "bottom-center",
+                                  autoClose: 2000,
+                                  hideProgressBar: true,
+                                  closeOnClick: true,
+                                  pauseOnHover: true,
+                                  draggable: true,
+                                  progress: undefined,
+                                  theme: "colored",
+                                  closeButton: false,
+                                  transition: Slide,
+                                  icon: false,
+                                  style: {
+                                    backgroundColor: "#E7FFF1",
+                                    color: "black",
+                                  },
+                                });
+                              } else {
+                                toast.dismiss();
+                              }
+                            } else {
+                              const toastId = "alert";
+                              if (!toast.isActive(toastId)) {
+                                toast(
+                                  "Your cart is full. Cannot add more items.",
+                                  {
+                                    toastId: toastId,
+                                    className: "toast-center",
+                                    position: "bottom-center",
+                                    autoClose: 2000,
+                                    hideProgressBar: true,
+                                    closeOnClick: true,
+                                    pauseOnHover: true,
+                                    draggable: true,
+                                    progress: undefined,
+                                    theme: "colored",
+                                    closeButton: false,
+                                    transition: Slide,
+                                    icon: false,
+                                    style: {
+                                      backgroundColor: "#E7FFF1",
+                                      color: "black",
+                                    },
+                                  }
+                                );
+                              } else {
+                                toast.dismiss();
+                              }
                             }
                           }}>
                           Add to cart

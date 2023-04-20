@@ -116,7 +116,7 @@ const Checkout = (props: { checkoutAds?: React.ReactNode }) => {
     if (currentUser.length !== 0) {
       navigate("/payment");
     } else {
-      const toastId = "alert";
+      const toastId = "login-toast";
       if (!toast.isActive(toastId)) {
         toast.error("Please login to continue.", {
           toastId: toastId,
