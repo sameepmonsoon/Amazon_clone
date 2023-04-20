@@ -33,7 +33,7 @@ const cartSlicer = createSlice({
         //   existingItem.totalPrice = existingItem.price * existingItem.quantity;
         const toastId = "alert";
         if (!toast.isActive(toastId)) {
-          toast.error("Item is already in your cart", {
+          toast.error("Item is already in your cart.", {
             toastId: toastId,
             className: "toast-center",
             position: "bottom-center",
@@ -50,10 +50,7 @@ const cartSlicer = createSlice({
             style: { backgroundColor: "#E84A4A", color: "white" },
           });
         } else {
-          toast.update(toastId, {
-            render: <div>Item is already in your cart.</div>,
-            autoClose: 1000,
-          });
+          toast.dismiss();
         }
         // }
       } else {
@@ -65,7 +62,27 @@ const cartSlicer = createSlice({
           };
           state.push(newItem);
         } else {
-          console.log("Cannot add more than 5 items to cart.");
+          const toastId = "alert";
+          if (!toast.isActive(toastId)) {
+            toast.error("Your cart is full. Cannot add more items.", {
+              toastId: toastId,
+              className: "toast-center",
+              position: "bottom-center",
+              autoClose: 1000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+              closeButton: false,
+              transition: Slide,
+              icon: false,
+              style: { backgroundColor: "#E84A4A", color: "white" },
+            });
+          } else {
+            toast.dismiss();
+          }
         }
       }
       Cookies.set("cartItems", JSON.stringify(state), { expires: 1 });
