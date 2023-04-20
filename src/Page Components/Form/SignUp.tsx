@@ -63,20 +63,70 @@ const Form = (props: { children: React.ReactNode }) => {
             })
             .catch((err) => {
               action.resetForm();
-              toast.error(err.response.data.message, {
-                className: "toast-center",
-                position: "bottom-center",
-                autoClose: 2000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-                closeButton: false,
-                transition: Slide,
-                icon: false,
-              });
+
+              if (err.response) {
+                // network error, but response received
+                const toastId = "alert";
+                const existingToast = toast.isActive(toastId);
+
+                if (existingToast) {
+                  toast.update(toastId, {
+                    render: `${
+                      err.response.data.message
+                        ? err.response.data.message
+                        : "Can't login. Please try again later."
+                    }`,
+                    autoClose: 1000,
+                  });
+                } else {
+                  toast.error(
+                    `${
+                      err.response.data.message
+                        ? err.response.data.message
+                        : "Can't login. Please try again later."
+                    }`,
+                    {
+                      toastId: toastId,
+                      className: "toast-center",
+                      position: "bottom-center",
+                      autoClose: 1000,
+                      hideProgressBar: true,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      theme: "colored",
+                      closeButton: false,
+                      transition: Slide,
+                      icon: false,
+                      style: {
+                        backgroundColor: " #FAE8E9",
+                        color: "#E84A4A",
+                      },
+                    }
+                  );
+                }
+              } else {
+                // network error, no response received
+                toast.error("Network error. Please try again later.", {
+                  className: "toast-center",
+                  position: "bottom-center",
+                  autoClose: 1000,
+                  hideProgressBar: true,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "colored",
+                  closeButton: false,
+                  transition: Slide,
+                  icon: false,
+                  style: {
+                    backgroundColor: " #FAE8E9",
+                    color: "#E84A4A",
+                  },
+                });
+              }
             })
         : HTTPMethods.post("/auth/signin", values)
             .then((res) => {

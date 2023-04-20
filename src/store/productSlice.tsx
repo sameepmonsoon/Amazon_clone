@@ -1,7 +1,5 @@
-import { AnyAction, createSlice } from "@reduxjs/toolkit";
-import { ThunkAction } from "redux-thunk";
+import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { RootState } from "./store";
 export const STATUS = Object.freeze({
   IDLE: "idle",
   ERROR: "error",

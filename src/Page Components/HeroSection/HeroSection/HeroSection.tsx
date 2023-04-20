@@ -62,6 +62,35 @@ const HeroSection = () => {
                       <button
                         onClick={() => {
                           addToBasket({ ...item, quantity: 1 });
+                          const toastId = "alert";
+                          const existingToast = toast.isActive(toastId);
+
+                          if (existingToast) {
+                            toast.update(toastId, {
+                              render: "Item added into the cart.",
+                              autoClose: 1000,
+                            });
+                          } else {
+                            toast("Item added into the cart.", {
+                              toastId: toastId,
+                              className: "toast-center",
+                              position: "bottom-center",
+                              autoClose: 1000,
+                              hideProgressBar: true,
+                              closeOnClick: true,
+                              pauseOnHover: true,
+                              draggable: true,
+                              progress: undefined,
+                              theme: "colored",
+                              closeButton: false,
+                              transition: Slide,
+                              icon: false,
+                              style: {
+                                backgroundColor: "#E7FFF1;",
+                                color: "#02844B",
+                              },
+                            });
+                          }
                         }}>
                         Add to cart
                       </button>
@@ -94,13 +123,20 @@ const HeroSection = () => {
                             if (cartItems.length <= 9) {
                               addToBasket({ ...item, quantity: 1 });
 
-                              const toastId = "toast";
-                              if (!toast.isActive(toastId)) {
+                              const toastId = "alert";
+                              const existingToast = toast.isActive(toastId);
+
+                              if (existingToast) {
+                                toast.update(toastId, {
+                                  render: "Item added into the cart.",
+                                  autoClose: 1000,
+                                });
+                              } else {
                                 toast("Item added into the cart.", {
                                   toastId: toastId,
                                   className: "toast-center",
                                   position: "bottom-center",
-                                  autoClose: 2000,
+                                  autoClose: 1000,
                                   hideProgressBar: true,
                                   closeOnClick: true,
                                   pauseOnHover: true,
@@ -111,23 +147,28 @@ const HeroSection = () => {
                                   transition: Slide,
                                   icon: false,
                                   style: {
-                                    backgroundColor: "#E7FFF1",
-                                    color: "black",
+                                    backgroundColor: "#E7FFF1;",
+                                    color: "#02844B",
                                   },
                                 });
-                              } else {
-                                toast.dismiss();
                               }
                             } else {
                               const toastId = "alert";
-                              if (!toast.isActive(toastId)) {
-                                toast(
-                                  "Your cart is full. Cannot add more items.",
+                              const existingToast = toast.isActive(toastId);
+
+                              if (existingToast) {
+                                toast.update(toastId, {
+                                  render: "Item Removed Successfully.",
+                                  autoClose: 1000,
+                                });
+                              } else {
+                                toast.error(
+                                  "Your cart is full .Cannot add more item.",
                                   {
                                     toastId: toastId,
                                     className: "toast-center",
                                     position: "bottom-center",
-                                    autoClose: 2000,
+                                    autoClose: 1000,
                                     hideProgressBar: true,
                                     closeOnClick: true,
                                     pauseOnHover: true,
@@ -138,13 +179,11 @@ const HeroSection = () => {
                                     transition: Slide,
                                     icon: false,
                                     style: {
-                                      backgroundColor: "#E7FFF1",
-                                      color: "black",
+                                      backgroundColor: " #FAE8E9",
+                                      color: "#E84A4A",
                                     },
                                   }
                                 );
-                              } else {
-                                toast.dismiss();
                               }
                             }
                           }}>

@@ -43,20 +43,35 @@ const Login = (props: { children: React.ReactNode }) => {
           localStorage.setItem("userToken", res.data.token); // save token to local storage
           dispatch(loginSuccess(res.data));
           resetForm();
-          toast.success("Login Successful", {
-            className: "toast-center",
-            position: "bottom-center",
-            autoClose: 2000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-            closeButton: false,
-            transition: Slide,
-            icon: false,
-          });
+          const toastId = "alert";
+          const existingToast = toast.isActive(toastId);
+
+          if (existingToast) {
+            toast.update(toastId, {
+              render: "Login Successful.",
+              autoClose: 1000,
+            });
+          } else {
+            toast("Login Successful.", {
+              toastId: toastId,
+              className: "toast-center",
+              position: "bottom-center",
+              autoClose: 1000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+              closeButton: false,
+              transition: Slide,
+              icon: false,
+              style: {
+                backgroundColor: "#E7FFF1;",
+                color: "#02844B",
+              },
+            });
+          }
           setTimeout(() => {
             navigate("/");
           }, 2000);
@@ -64,20 +79,70 @@ const Login = (props: { children: React.ReactNode }) => {
         .catch((err) => {
           resetForm();
           dispatch(loginFailure());
-          toast.error(err.response.data.message, {
-            className: "toast-center",
-            position: "bottom-center",
-            autoClose: 2000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-            closeButton: false,
-            transition: Slide,
-            icon: false,
-          });
+
+          if (err.response) {
+            // network error, but response received
+            const toastId = "alert";
+            const existingToast = toast.isActive(toastId);
+
+            if (existingToast) {
+              toast.update(toastId, {
+                render: `${
+                  err.response.data.message
+                    ? err.response.data.message
+                    : "Can't login. Please try again later."
+                }`,
+                autoClose: 1000,
+              });
+            } else {
+              toast.error(
+                `${
+                  err.response.data.message
+                    ? err.response.data.message
+                    : "Can't login. Please try again later."
+                }`,
+                {
+                  toastId: toastId,
+                  className: "toast-center",
+                  position: "bottom-center",
+                  autoClose: 1000,
+                  hideProgressBar: true,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "colored",
+                  closeButton: false,
+                  transition: Slide,
+                  icon: false,
+                  style: {
+                    backgroundColor: " #FAE8E9",
+                    color: "#E84A4A",
+                  },
+                }
+              );
+            }
+          } else {
+            // network error, no response received
+            toast.error("Network error. Please try again later.", {
+              className: "toast-center",
+              position: "bottom-center",
+              autoClose: 1000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+              closeButton: false,
+              transition: Slide,
+              icon: false,
+              style: {
+                backgroundColor: " #FAE8E9",
+                color: "#E84A4A",
+              },
+            });
+          }
         });
     },
     validationSchema: Schema,
