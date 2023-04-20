@@ -32,6 +32,7 @@ export const router: any = createBrowserRouter([
   { path: "/collection", element: <Collection /> },
   { path: "/orders", element: <Orders /> },
   { path: "/search/:id", element: <SearchPage /> },
+
   {
     path: "/payment",
     element: (

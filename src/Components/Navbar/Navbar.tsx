@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./Navbar.scss";
-import {
-  AiFillCaretDown,
-  BsCaretDownFill,
-  BsCaretUpFill,
-  BsChevronDown,
-  FaSortUp,
-  TbSearch,
-} from "react-icons/all";
+import { Slide, toast } from "react-toastify";
+
+import { BsCaretUpFill, TbSearch } from "react-icons/all";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/userSlice";
@@ -34,9 +29,37 @@ const Navbar = (props: {
   };
   const handleLogout = () => {
     dispatch(logout());
-    setTimeout(() => {
-      navigate("/");
-    }, 3000);
+
+    navigate("/");
+    const toastId = "alert";
+    const existingToast = toast.isActive(toastId);
+
+    if (existingToast) {
+      toast.update(toastId, {
+        render: "You are now logged out. See you soon!",
+        autoClose: 1000,
+      });
+    } else {
+      toast("You are now logged out. See you soon!", {
+        toastId: toastId,
+        className: "toast-center",
+        position: "bottom-center",
+        autoClose: 1000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        closeButton: false,
+        transition: Slide,
+        icon: false,
+        style: {
+          backgroundColor: "#E7FFF1;",
+          color: "#02844B",
+        },
+      });
+    }
   };
   const { id } = useParams();
   const getPayment = async () => {

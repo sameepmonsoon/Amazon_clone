@@ -72,9 +72,7 @@ const Login = (props: { children: React.ReactNode }) => {
               },
             });
           }
-          setTimeout(() => {
-            navigate("/");
-          }, 2000);
+          navigate("/");
         })
         .catch((err) => {
           resetForm();

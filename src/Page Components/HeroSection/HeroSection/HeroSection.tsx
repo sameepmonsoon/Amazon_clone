@@ -9,12 +9,15 @@ import Cookies from "js-cookie";
 import { UserOrder } from "../../../Layout/HomeLayout";
 import { useLocation } from "react-router-dom";
 import { Slide, toast } from "react-toastify";
-
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import Slider from "../../../Components/Slider/Slider";
 const HeroSection = () => {
   const dispatch = useDispatch();
   const { data: products, status } = useSelector((state: any) => state.product);
   const { data: recommend } = useSelector((state: any) => state.recommend);
   console.log("inside the reducer", recommend);
+
   function addToBasket(value: any) {
     dispatch(addToCart(value));
   }
@@ -38,13 +41,13 @@ const HeroSection = () => {
       {(value: any) => (
         <div className="hero">
           <div className="hero-image-container">
+            <Slider recommended={recommend} />
             <img
               className="hero-image"
               src="https://images.unsplash.com/photo-1633174524778-61a18ee54490?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1196&q=80"
               alt=""
             />
           </div>
-
           <div className="products-dual">
             {products
               .filter((item: any) =>

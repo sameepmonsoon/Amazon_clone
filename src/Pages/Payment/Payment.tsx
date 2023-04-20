@@ -82,20 +82,35 @@ const Payment = () => {
         })
         .catch((err) => {
           console.warn(err);
-          toast.error("Items Added into collection.", {
-            className: "toast-center",
-            position: "bottom-center",
-            autoClose: 2000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-            closeButton: false,
-            transition: Slide,
-            icon: false,
-          });
+          const toastId = "alert";
+          const existingToast = toast.isActive(toastId);
+
+          if (existingToast) {
+            toast.update(toastId, {
+              render: `${err.response.data.message}`,
+              autoClose: 1000,
+            });
+          } else {
+            toast.error(`${err.response.data.message}`, {
+              toastId: toastId,
+              className: "toast-center",
+              position: "bottom-center",
+              autoClose: 1000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+              closeButton: false,
+              transition: Slide,
+              icon: false,
+              style: {
+                backgroundColor: " #FAE8E9",
+                color: "#E84A4A",
+              },
+            });
+          }
         });
     },
     validationSchema: Schema,
