@@ -37,7 +37,6 @@ const Form = (props: { children: React.ReactNode }) => {
       confirmPassword: "",
     },
     onSubmit: (values, action) => {
-      console.log(values);
       isSignIn === false
         ? HTTPMethods.post("/auth/signup", values)
             .then((res: any) => {
@@ -130,7 +129,6 @@ const Form = (props: { children: React.ReactNode }) => {
             })
         : HTTPMethods.post("/auth/signin", values)
             .then((res) => {
-              console.log(res);
               action.resetForm();
               navigate("/login");
             })

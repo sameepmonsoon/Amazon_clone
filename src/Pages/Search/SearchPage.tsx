@@ -7,6 +7,8 @@ import { addToCart } from "../../store/cartSlice";
 import { fetchProducts } from "../../store/productSlice";
 import Cookies from "js-cookie";
 import "./Search.scss";
+import { Slide, toast } from "react-toastify";
+
 const SearchPage = () => {
   const dispatch = useDispatch();
 
@@ -47,6 +49,35 @@ const SearchPage = () => {
                       <button
                         onClick={() => {
                           addToBasket({ ...item, quantity: 1 });
+                          const toastId = "alert";
+                          const existingToast = toast.isActive(toastId);
+
+                          if (existingToast) {
+                            toast.update(toastId, {
+                              render: "Item added into the cart.",
+                              autoClose: 1000,
+                            });
+                          } else {
+                            toast("Item added into the cart.", {
+                              toastId: toastId,
+                              className: "toast-center",
+                              position: "bottom-center",
+                              autoClose: 1000,
+                              hideProgressBar: true,
+                              closeOnClick: true,
+                              pauseOnHover: true,
+                              draggable: true,
+                              progress: undefined,
+                              theme: "colored",
+                              closeButton: false,
+                              transition: Slide,
+                              icon: false,
+                              style: {
+                                backgroundColor: "#E7FFF1;",
+                                color: "#02844B",
+                              },
+                            });
+                          }
                         }}>
                         Add to cart
                       </button>

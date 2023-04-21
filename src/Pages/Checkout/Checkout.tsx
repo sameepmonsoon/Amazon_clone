@@ -50,7 +50,6 @@ const Checkout = (props: { checkoutAds?: React.ReactNode }) => {
     if (currentUser.length !== 0)
       HTTPMethods.post(`/cart/${currentUser._id}/addCart`, cartItems)
         .then((res) => {
-          console.log(res);
           toast.success("Items Added into collection.", {
             className: "toast-center",
             position: "bottom-center",

@@ -16,8 +16,11 @@ import { MdAdd } from "react-icons/md";
 import { HiMinusSm } from "react-icons/hi";
 import Cookies from "js-cookie";
 import { HTTPMethods } from "../../Utils/HTTPMethods";
+import { useNavigate } from "react-router-dom";
 const Collection = (props: { checkoutAds?: React.ReactNode }) => {
   const { checkoutAds } = props;
+
+  const navigate = useNavigate();
   const [collection, setCollection] = useState<any>([]);
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state: any) => state.user);
@@ -82,24 +85,75 @@ const Collection = (props: { checkoutAds?: React.ReactNode }) => {
   const handleCookie = () => {
     collection.forEach((item: any) => {
       dispatch(addToCart(item));
-      toast.success("Login Successful", {
-        className: "toast-center",
-        position: "bottom-center",
-        autoClose: 2000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-        closeButton: false,
-        transition: Slide,
-        icon: false,
-      });
+      const toastId = "alert";
+      const existingToast = toast.isActive(toastId);
+
+      if (existingToast) {
+        toast.update(toastId, {
+          render: "Item added into the cart.",
+          autoClose: 1000,
+        });
+      } else {
+        toast("Item added into the cart.", {
+          toastId: toastId,
+          className: "toast-center",
+          position: "bottom-center",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          closeButton: false,
+          transition: Slide,
+          icon: false,
+          style: {
+            backgroundColor: "#E7FFF1;",
+            color: "#02844B",
+          },
+        });
+      }
     }); // update the cart with new collection items
     Cookies.set("cartItems", JSON.stringify(collection), {
       expires: 1,
     });
+  };
+
+  const handlePayment = () => {
+    if (currentUser.length !== 0) {
+      navigate("/payment");
+    } else {
+      const toastId = "alert";
+      const existingToast = toast.isActive(toastId);
+
+      if (existingToast) {
+        toast.update(toastId, {
+          render: "Please login to continue.",
+          autoClose: 1000,
+        });
+      } else {
+        toast.error("Please login to continue.", {
+          toastId: toastId,
+          className: "toast-center",
+          position: "bottom-center",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          closeButton: false,
+          transition: Slide,
+          icon: false,
+          style: {
+            backgroundColor: " #FAE8E9",
+            color: "#E84A4A",
+          },
+        });
+      }
+    }
   };
   return (
     <HomeLayout
@@ -118,33 +172,10 @@ const Collection = (props: { checkoutAds?: React.ReactNode }) => {
                       image={item.image}
                       category={item.category}
                       description={item.description}
-                      button={
-                        <button
-                          onClick={() => {
-                            removeItem(item.id);
-                          }}>
-                          <AiOutlineDelete size={25} />
-                        </button>
-                      }
                       ratings={item.rating?.rate}
                       quantity={item.quantity}
                       price={item.price}
-                      incrementButton={
-                        <MdAdd
-                          size={25}
-                          onClick={() => {
-                            incrementCart(item.id);
-                          }}
-                        />
-                      }
-                      decrementButton={
-                        <HiMinusSm
-                          size={25}
-                          onClick={() => {
-                            decrementCart(item.id);
-                          }}
-                        />
-                      }
+                      button={<b>Quantity :</b>}
                     />
                   </div>
                 );
@@ -152,13 +183,20 @@ const Collection = (props: { checkoutAds?: React.ReactNode }) => {
             </div>
             <div className="checkout-subtotal">
               <SubTotalCard
-                subtotalCheckoutButton={<button>Proceed To pyament</button>}
+                subtotalCheckoutButton={
+                  <button
+                    onClick={() => {
+                      handlePayment();
+                    }}>
+                    Proceed To pyament
+                  </button>
+                }
                 subtotalButton={
                   <button
                     onClick={() => {
                       handleCookie();
                     }}>
-                    Continue
+                    Add to cart
                   </button>
                 }
               />
