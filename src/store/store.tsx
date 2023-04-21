@@ -13,5 +13,6 @@ export const store = configureStore({
     order: orderReducer,
     recommend: recommendReducer,
   },
+  devTools: false,
 });
 export type RootState = ReturnType<typeof store.getState>;
