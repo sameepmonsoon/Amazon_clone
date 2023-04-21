@@ -150,6 +150,38 @@ const cartSlicer = createSlice({
           item.quantity = 10;
           item.totalPrice = item.price * item.quantity;
           Cookies.set("cartItems", JSON.stringify(state), { expires: 1 });
+          const toastId = "alert";
+          const existingToast = toast.isActive(toastId);
+
+          if (existingToast) {
+            toast.update(toastId, {
+              render: "Your shopping cart is full. Only 10 items can be added.",
+              autoClose: 1000,
+            });
+          } else {
+            toast.error(
+              "Your shopping cart is full. Only 10 pieces per item can be added.",
+              {
+                toastId: toastId,
+                className: "toast-center",
+                position: "bottom-center",
+                autoClose: 1000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                closeButton: false,
+                transition: Slide,
+                icon: false,
+                style: {
+                  backgroundColor: " #FAE8E9",
+                  color: "#E84A4A",
+                },
+              }
+            );
+          }
         } else {
           item.quantity++;
           item.totalPrice = item.price * item.quantity;
