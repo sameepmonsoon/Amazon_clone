@@ -9,7 +9,8 @@ import Cookies from "js-cookie";
 import { UserOrder } from "../../../Layout/HomeLayout";
 import { useLocation } from "react-router-dom";
 import { Slide, toast } from "react-toastify";
-import "react-multi-carousel/lib/styles.css";
+import "react-awesome-slider/dist/styles.css";
+
 const HeroSection = () => {
   const dispatch = useDispatch();
   const { data: products, status } = useSelector((state: any) => state.product);
@@ -41,101 +42,106 @@ const HeroSection = () => {
           <div className="hero-image-container">
             {recommend?.recommendedProducts && (
               <div className="products-recommend">
-                <h3>Top selling Products</h3>
+                <h3>Top selling Products</h3>{" "}
                 <div className="products">
                   {recommend?.recommendedProducts
-                    ?.slice(0, 4)
-                    .map((item: any, index: number) => {
-                      return item.map((item: any, index: number) => {
-                        return (
-                          <div key={index}>
-                            <Card
-                              id={item.id}
-                              image={item.image}
-                              category={item.category}
-                              description={item.description}
-                              button={
-                                <button
-                                  onClick={() => {
-                                    if (cartItems.length <= 9) {
-                                      addToBasket({ ...item, quantity: 1 });
+                    ? [...recommend.recommendedProducts]
+                        .sort(() => Math.random() - 0.5)
+                        .slice(0, 4)
+                        .map((item: any, index: number) => {
+                          return item.map((item: any, index: number) => {
+                            return (
+                              <div key={index}>
+                                <Card
+                                  id={item.id}
+                                  image={item.image}
+                                  category={item.category}
+                                  description={item.description}
+                                  button={
+                                    <button
+                                      onClick={() => {
+                                        if (cartItems.length <= 9) {
+                                          addToBasket({ ...item, quantity: 1 });
 
-                                      const toastId = "alert";
-                                      const existingToast =
-                                        toast.isActive(toastId);
+                                          const toastId = "alert";
+                                          const existingToast =
+                                            toast.isActive(toastId);
 
-                                      if (existingToast) {
-                                        toast.update(toastId, {
-                                          render: "Item added into the cart.",
-                                          autoClose: 1000,
-                                        });
-                                      } else {
-                                        toast("Item added into the cart.", {
-                                          toastId: toastId,
-                                          className: "toast-center",
-                                          position: "bottom-center",
-                                          autoClose: 1000,
-                                          hideProgressBar: true,
-                                          closeOnClick: true,
-                                          pauseOnHover: true,
-                                          draggable: true,
-                                          progress: undefined,
-                                          theme: "colored",
-                                          closeButton: false,
-                                          transition: Slide,
-                                          icon: false,
-                                          style: {
-                                            backgroundColor: "#E7FFF1;",
-                                            color: "#02844B",
-                                          },
-                                        });
-                                      }
-                                    } else {
-                                      const toastId = "alert";
-                                      const existingToast =
-                                        toast.isActive(toastId);
-
-                                      if (existingToast) {
-                                        toast.update(toastId, {
-                                          render: "Item Removed Successfully.",
-                                          autoClose: 1000,
-                                        });
-                                      } else {
-                                        toast.error(
-                                          "Your cart is full .Cannot add more item.",
-                                          {
-                                            toastId: toastId,
-                                            className: "toast-center",
-                                            position: "bottom-center",
-                                            autoClose: 1000,
-                                            hideProgressBar: true,
-                                            closeOnClick: true,
-                                            pauseOnHover: true,
-                                            draggable: true,
-                                            progress: undefined,
-                                            theme: "colored",
-                                            closeButton: false,
-                                            transition: Slide,
-                                            icon: false,
-                                            style: {
-                                              backgroundColor: " #FAE8E9",
-                                              color: "#E84A4A",
-                                            },
+                                          if (existingToast) {
+                                            toast.update(toastId, {
+                                              render:
+                                                "Item added into the cart.",
+                                              autoClose: 1000,
+                                            });
+                                          } else {
+                                            toast("Item added into the cart.", {
+                                              toastId: toastId,
+                                              className: "toast-center",
+                                              position: "bottom-center",
+                                              autoClose: 1000,
+                                              hideProgressBar: true,
+                                              closeOnClick: true,
+                                              pauseOnHover: true,
+                                              draggable: true,
+                                              progress: undefined,
+                                              theme: "colored",
+                                              closeButton: false,
+                                              transition: Slide,
+                                              icon: false,
+                                              style: {
+                                                backgroundColor: "#E7FFF1;",
+                                                color: "#02844B",
+                                              },
+                                            });
                                           }
-                                        );
-                                      }
-                                    }
-                                  }}>
-                                  Add to cart
-                                </button>
-                              }
-                              ratings={item?.rating.rate}
-                              price={item.price}
-                            />
-                          </div>
-                        );
-                      });
-                    })}
+                                        } else {
+                                          const toastId = "alert";
+                                          const existingToast =
+                                            toast.isActive(toastId);
+
+                                          if (existingToast) {
+                                            toast.update(toastId, {
+                                              render:
+                                                "Item Removed Successfully.",
+                                              autoClose: 1000,
+                                            });
+                                          } else {
+                                            toast.error(
+                                              "Your cart is full .Cannot add more item.",
+                                              {
+                                                toastId: toastId,
+                                                className: "toast-center",
+                                                position: "bottom-center",
+                                                autoClose: 1000,
+                                                hideProgressBar: true,
+                                                closeOnClick: true,
+                                                pauseOnHover: true,
+                                                draggable: true,
+                                                progress: undefined,
+                                                theme: "colored",
+                                                closeButton: false,
+                                                transition: Slide,
+                                                icon: false,
+                                                style: {
+                                                  backgroundColor: " #FAE8E9",
+                                                  color: "#E84A4A",
+                                                },
+                                              }
+                                            );
+                                          }
+                                        }
+                                      }}>
+                                      Add to cart
+                                    </button>
+                                  }
+                                  ratings={item?.rating.rate}
+                                  price={item.price}
+                                />
+                              </div>
+                            );
+                          });
+                        })
+                    : null}
                 </div>
               </div>
             )}
