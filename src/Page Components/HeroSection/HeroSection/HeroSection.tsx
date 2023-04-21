@@ -10,12 +10,10 @@ import { UserOrder } from "../../../Layout/HomeLayout";
 import { useLocation } from "react-router-dom";
 import { Slide, toast } from "react-toastify";
 import amazonGif from "../../../../public/Assets/97609-amazon.gif";
-import amazonGif2 from "../../../../public/Assets/56149-amazon-tag.gif";
 const HeroSection = () => {
   const dispatch = useDispatch();
   const { data: products, status } = useSelector((state: any) => state.product);
   const { data: recommend } = useSelector((state: any) => state.recommend);
-  console.log("inside the reducer", recommend.recommendedProducts);
 
   function addToBasket(value: any) {
     dispatch(addToCart(value));
@@ -155,11 +153,13 @@ const HeroSection = () => {
                 position: "relative",
                 top: "-300px",
                 left: "0",
-                height: "100px",
+                height: "250px",
+                width: "99.95%",
                 display: "flex",
                 justifyContent: "space-evenly",
+                alignItems: "center",
                 gap: "20px",
-                borderBottom: "2px solid gray",
+                border: "2px solid gray",
               }}>
               <img
                 src={amazonGif}
