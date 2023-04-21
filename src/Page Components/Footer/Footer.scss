@@ -35,3 +35,18 @@
     }
   }
 }
+.footer-links-container {
+  padding: 10px;
+  cursor: pointer;
+}
+.footer-links-container:hover {
+  text-decoration: underline;
+}
+.footer-links {
+  width: 50%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: start;
+  align-items: center;
+  gap: 20px;
+}

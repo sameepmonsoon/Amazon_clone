@@ -9,7 +9,8 @@ import Cookies from "js-cookie";
 import { UserOrder } from "../../../Layout/HomeLayout";
 import { useLocation } from "react-router-dom";
 import { Slide, toast } from "react-toastify";
-
+import amazonGif from "../../../../public/Assets/97609-amazon.gif";
+import amazonGif2 from "../../../../public/Assets/56149-amazon-tag.gif";
 const HeroSection = () => {
   const dispatch = useDispatch();
   const { data: products, status } = useSelector((state: any) => state.product);
@@ -149,6 +150,38 @@ const HeroSection = () => {
               src="https://images.unsplash.com/photo-1633174524778-61a18ee54490?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1196&q=80"
               alt=""
             />
+            <div
+              style={{
+                position: "relative",
+                top: "-300px",
+                left: "0",
+                height: "100px",
+                display: "flex",
+                justifyContent: "space-evenly",
+                gap: "20px",
+                borderBottom: "2px solid gray",
+              }}>
+              <img
+                src={amazonGif}
+                alt=""
+                style={{ height: "200px", width: "250px" }}
+              />
+              <img
+                src={amazonGif}
+                alt=""
+                style={{ height: "200px", width: "250px" }}
+              />
+              <img
+                src={amazonGif}
+                alt=""
+                style={{ height: "200px", width: "250px" }}
+              />
+              <img
+                src={amazonGif}
+                alt=""
+                style={{ height: "200px", width: "250px" }}
+              />
+            </div>
           </div>
           <div className="products-dual">
             {products

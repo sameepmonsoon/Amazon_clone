@@ -4,10 +4,46 @@ const Footer = () => {
   return (
     <div className="footer">
       <div className="footer-links">
-        Footer Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam
-        laborum, repellendus enim reprehenderit fugit optio numquam dolorem
-        necessitatibus cum similique hic perferendis maxime ipsum architecto
-        ullam esse at repudiandae error?
+        <div className="footer-links-container">
+          <p> Amazon Music </p>
+          <p>Stream millions</p> <p>of songs</p>
+        </div>
+        <div className="footer-links-container">
+          <p> AmazonGlobal Ship</p>
+          <p> Orders </p> <p>Internationally</p>
+        </div>
+        <div className="footer-links-container">
+          <p> Amazon Web Services</p>
+          <p>Scalable Cloud</p> <p>Computing Services</p>
+        </div>
+        <div className="footer-links-container">
+          <p> AbeBooks</p>
+          <p>Books, art</p> <p>& collectibles</p>
+        </div>
+        <div className="footer-links-container">
+          <p>ACX</p>
+          <p>Audiobook Publishing</p> <p>Made Easy</p>
+        </div>{" "}
+        <div className="footer-links-container">
+          <p> AbeBooks</p>
+          <p>Books, art</p> <p>& collectibles</p>
+        </div>
+        <div className="footer-links-container">
+          <p> AmazonGlobal Ship</p>
+          <p> Orders </p> <p>Internationally</p>
+        </div>
+        <div className="footer-links-container">
+          <p>ACX</p>
+          <p>Audiobook Publishing</p> <p>Made Easy</p>
+        </div>
+        <div className="footer-links-container">
+          <p> Amazon Web Services</p>
+          <p>Scalable Cloud</p> <p>Computing Services</p>
+        </div>
+        <div className="footer-links-container">
+          <p> Amazon Music </p>
+          <p>Stream millions</p> <p>of songs</p>
+        </div>
       </div>
       <div className="footer-copyright">
         <p className="footer-copyright-details">

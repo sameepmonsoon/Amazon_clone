@@ -53,20 +53,12 @@ const Orders = (props: { checkoutAds?: React.ReactNode }) => {
                             image={item.image}
                             category={item.category}
                             description={item.description}
-                            button={
-                              <button onClick={() => {}}>
-                                <AiOutlineDelete size={25} />
-                              </button>
-                            }
+                            button={<>Quantity</>}
                             ratings={item.rating?.rate}
                             quantity={item.quantity}
                             price={item.price}
-                            incrementButton={
-                              <MdAdd size={25} onClick={() => {}} />
-                            }
-                            decrementButton={
-                              <HiMinusSm size={25} onClick={() => {}} />
-                            }
+                            incrementButton={<></>}
+                            decrementButton={<></>}
                           />
                         </div>
                       );
