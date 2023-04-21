@@ -24,7 +24,7 @@ const Navbar = (props: {
   const { currentUser } = useSelector((state: any) => state.user);
   const handleLogin = () => {
     if (currentUser.length !== 0) {
-      navigate("/profile");
+      navigate("/orders");
     } else navigate("/login");
   };
   const handleLogout = () => {
@@ -191,7 +191,12 @@ const Navbar = (props: {
             </div>
           )}
         </span>
-        <span className="navbar-option-two" onClick={() => getPayment()}>
+        <span
+          className="navbar-option-two"
+          onClick={() => {
+            getPayment();
+            navigate("/orders");
+          }}>
           Return &nbsp;
           <br />
           <b> & Orders</b>

@@ -62,7 +62,8 @@ const Card = (props: {
           <div className="card-description">{description}</div>
           <p>
             <TbCurrencyRupeeNepalese size={18} />
-            {price}
+            {/* might throw error --toFixed() error prone */}
+            {price.toFixed(2)}
           </p>
           <div className="card-ratings">
             <span className="card-ratings-star">
