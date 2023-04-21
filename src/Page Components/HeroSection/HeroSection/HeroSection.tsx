@@ -9,7 +9,6 @@ import Cookies from "js-cookie";
 import { UserOrder } from "../../../Layout/HomeLayout";
 import { useLocation } from "react-router-dom";
 import { Slide, toast } from "react-toastify";
-import AwesomeSlider from "react-awesome-slider";
 import "react-awesome-slider/dist/styles.css";
 
 const HeroSection = () => {
