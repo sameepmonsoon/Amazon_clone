@@ -44,5 +44,29 @@
   gap: 10px;
 }
 
+.product-banner {
+  position: relative;
+  left: 0;
+  top: -100px;
+  height: 250px;
+  width: 99.95%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 20px;
+  border: 2px solid gray;
+  @media screen and (max-width: $mobile) {
+    .hide1,
+    .hide2,
+    .hide3 {
+      display: none;
+    }
+  }
 
-
+  @media screen and (max-width: $medium) and (min-width: $mobile) {
+    .hide1,
+    .hide2 {
+      display: none;
+    }
+  }
+}

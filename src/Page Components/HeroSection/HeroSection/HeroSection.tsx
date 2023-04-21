@@ -148,40 +148,31 @@ const HeroSection = () => {
               src="https://images.unsplash.com/photo-1633174524778-61a18ee54490?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1196&q=80"
               alt=""
             />
-            <div
-              style={{
-                position: "relative",
-                top: "-300px",
-                left: "0",
-                height: "250px",
-                width: "99.95%",
-                display: "flex",
-                justifyContent: "space-evenly",
-                alignItems: "center",
-                gap: "20px",
-                border: "2px solid gray",
-              }}>
-              <img
-                src={amazonGif}
-                alt=""
-                style={{ height: "200px", width: "250px" }}
-              />
-              <img
-                src={amazonGif}
-                alt=""
-                style={{ height: "200px", width: "250px" }}
-              />
-              <img
-                src={amazonGif}
-                alt=""
-                style={{ height: "200px", width: "250px" }}
-              />
-              <img
-                src={amazonGif}
-                alt=""
-                style={{ height: "200px", width: "250px" }}
-              />
-            </div>
+          </div>{" "}
+          <div className="product-banner">
+            <img
+              src={amazonGif}
+              alt=""
+              style={{ height: "200px", width: "250px" }}
+            />
+            <img
+              className="hide1"
+              src={amazonGif}
+              alt=""
+              style={{ height: "200px", width: "250px" }}
+            />
+            <img
+              className="hide2"
+              src={amazonGif}
+              alt=""
+              style={{ height: "200px", width: "250px" }}
+            />
+            <img
+              className="hide3"
+              src={amazonGif}
+              alt=""
+              style={{ height: "200px", width: "250px" }}
+            />
           </div>
           <div className="products-dual">
             {products
